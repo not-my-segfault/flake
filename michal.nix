@@ -56,12 +56,8 @@
     # ALIASES
     aliases['cd']        = "z"
     aliases['ls']        = "exa -la @($args) --colour=always | bat --style=numbers"
-    aliases['ns']        = "nix-shell --run xonsh"
     aliases['crs']       = "distrobox-enter --name crystal"
     aliases['cat']       = "bat"
-    aliases['ngc']       = "nix-collect-garbage -d"
-    aliases['nrb']       = "sudo nixos-rebuild boot --upgrade; home-manager switch -b backup"
-    aliases['nrs']       = "sudo nixos-rebuild switch; home-manager switch -b backup"
     aliases['find']      = "fd"
     aliases['clear']     = "/run/current-system/sw/bin/clear && pfetch"
      
