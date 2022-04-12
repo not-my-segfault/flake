@@ -15,17 +15,20 @@
     nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./hardware.nix
-        ./base.nix
-        ./yubikey.nix
-        ./personal.nix
-        ./dev.nix
-        ./media.nix
-        ./kde.nix
+        ./station/hardware.nix
+        ./station/base.nix
+        ./station/personal.nix
+        ./station/dev.nix
+        ./station/media.nix
+
+        ./common/kde.nix
+        ./common/nix.nix
+        ./common/yubikey.nix
+
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.michal = import ./michal.nix;
+          home-manager.users.michal = import ./common/michal.nix;
         }
       ];
     };
