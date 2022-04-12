@@ -9,6 +9,7 @@
 
   environment.systemPackages = with pkgs; [
     distrobox
+    gnumake
     vscode-fhs
     qmk
   ];
