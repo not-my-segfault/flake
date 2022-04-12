@@ -12,6 +12,7 @@
     };
     extraOptions = ''
       experimental-features = nix-command flakes
+      tarball-ttl = 0
     '';
   };
 
