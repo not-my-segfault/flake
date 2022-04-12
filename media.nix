@@ -22,12 +22,18 @@
     driSupport32Bit = true;
   };
 
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [ 
-      epson-escpr
-      epson-escpr2
-    ];
+  services = {
+    printing = {
+      enable = true;
+      drivers = with pkgs; [ 
+        epson-escpr
+        epson-escpr2
+      ];
+    };
+    avahi = {
+      enable = true;
+      nssmdns = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
