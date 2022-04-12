@@ -11,4 +11,8 @@
     };
   };
 
+  environment.systemPackages = with pkgs; [
+    sddm-kcm
+  ];
+
 }

@@ -41,19 +41,6 @@
 
   time.timeZone = "Europe/London";
 
-  environment.systemPackages = with pkgs; [
-    cryptsetup
-    home-manager
-    sddm-kcm
-    vulkan-tools
-  ];
-
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
-
   services.xserver.videoDrivers = [ "nvidia" ];
 
   system.stateVersion = "21.11";

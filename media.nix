@@ -45,8 +45,15 @@
     polymc
     skypeforlinux
     spotify
+    vulkan-tools
     wine
     wine64
+  ];
+
+  fonts.fonts = with pkgs; [
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
   ];
 
 }
