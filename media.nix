@@ -22,8 +22,13 @@
     driSupport32Bit = true;
   };
 
-  # temp disabled, pycurl39 build issue
-  services.printing.enable = false;
+  services.printing = {
+    enable = true;
+    drivers = with pkgs; [ 
+      epson-escpr
+      epson-escpr2
+    ];
+  };
 
   environment.systemPackages = with pkgs; [
     gamemode
