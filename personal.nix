@@ -13,9 +13,4 @@
     extraConfig = "Defaults pwfeedback";
   };
 
-  services = {
-    mullvad-vpn.enable = true;
-    flatpak.enable = true;
-  };
-
 }
