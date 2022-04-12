@@ -13,4 +13,11 @@
     extraConfig = "Defaults pwfeedback";
   };
 
+  environment.systemPackages = with pkgs; [
+    obs-studio
+    skypeforlinux
+    wine
+    wine64
+  ];
+
 }

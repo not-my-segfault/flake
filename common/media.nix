@@ -13,14 +13,7 @@
     jack.enable = true;
   };
 
-  programs = {
-    steam.enable = true;
-    kdeconnect.enable = true;
-  };
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
+  programs.kdeconnect.enable = true;
 
   services = {
     printing = {
@@ -34,20 +27,12 @@
       enable = true;
       nssmdns = true;
     };
+    bluetooth.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
-    gamemode
     kdenlive
-    krita
-    lutris
-    obs-studio
-    polymc
-    skypeforlinux
     spotify
-    vulkan-tools
-    wine
-    wine64
   ];
 
   fonts.fonts = with pkgs; [
