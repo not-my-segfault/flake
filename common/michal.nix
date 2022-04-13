@@ -86,6 +86,7 @@
     fd
     ffmpeg
     firefox
+    flameshot
     gimp
     git
     htop
