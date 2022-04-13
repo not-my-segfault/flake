@@ -29,6 +29,7 @@
   time.timeZone = "Europe/London";
 
   services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.modesetting.enable = true;
 
   system.stateVersion = "21.11";
 
