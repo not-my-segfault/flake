@@ -12,6 +12,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    plasma-browser-integration
     sddm-kcm
   ];
 
