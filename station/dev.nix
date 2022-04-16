@@ -2,15 +2,20 @@
 
 {
 
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+    libvirtd.enable = true;
   };
+
+  programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs; [
     distrobox
     gnumake
-    virtualbox
+    virt-manager
     vscode-fhs
     qmk
   ];

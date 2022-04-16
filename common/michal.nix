@@ -85,7 +85,6 @@
     exa
     fd
     ffmpeg
-    firefox
     flameshot
     gimp
     git
@@ -97,6 +96,7 @@
     kgpg
     kstars
     libreoffice
+    microsoft-edge-dev
     ncdu
     neofetch
     pfetch
