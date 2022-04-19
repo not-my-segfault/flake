@@ -59,7 +59,7 @@
     aliases['crs']       = "distrobox-enter --name crystal"
     aliases['cat']       = "bat"
     aliases['find']      = "fd"
-    aliases['clear']     = "/run/current-system/sw/bin/clear && pfetch"
+    aliases['clear']     = "env clear && pfetch"
      
     # ABBREVS
     abbrevs['nix-shell'] = "nix-shell --run xonsh"
