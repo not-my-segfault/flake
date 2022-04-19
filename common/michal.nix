@@ -76,6 +76,7 @@
     bat
     bitwarden
     discord
+    duf
     exa
     fd
     flameshot
