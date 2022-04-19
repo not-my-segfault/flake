@@ -73,38 +73,15 @@
   '';
 
   home.packages = with pkgs; [
-    ark
-    audacity
     bat
     bitwarden
-    curl
     discord
-    dragon
-    duf
-    elisa
     exa
     fd
-    ffmpeg
     flameshot
-    gimp
-    git
-    htop
-    httpie
-    k3b
-    kate
-    kcharselect
-    kgpg
-    kstars
-    libreoffice
-    microsoft-edge-dev
     ncdu
     neofetch
     pfetch
-    shotwell
-    thunderbird
-    tldr
-    vim
-    wget
     xonsh
     zoxide
   ];

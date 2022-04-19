@@ -32,7 +32,14 @@
   hardware.bluetooth.enable = true;
 
   environment.systemPackages = with pkgs; [
+    audacity
+    dragon
+    elisa
+    ffmpeg
+    gimp
+    k3b
     kdenlive
+    shotwell
     spotify
   ];
 
