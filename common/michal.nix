@@ -50,7 +50,7 @@
     $PF_INFO                      = 'ascii title os host kernel uptime memory palette'
     $PROMPT                       = '{BOLD_GREEN}{short_cwd}{RESET}> '
     $SSH_AUTH_SOCK                = '/run/user/1000/gnupg/S.gpg-agent.ssh'
-    $THEFUCK_REQUIRE_CONFIRMATION = False
+    $THEFUCK_REQUIRE_CONFIRMATION = True
     
     # SPECIFIC XONSH CONFIG
     $COMPLETIONS_CONFIRM = True
