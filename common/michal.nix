@@ -78,7 +78,6 @@
     filetype indent on
     filetype on
     set ai
-    set nocompatible
     set number
     set si
     set undodir=~/.vim/backup
