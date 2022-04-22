@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
  
   {
     nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
