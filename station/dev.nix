@@ -18,10 +18,10 @@
     git
     gnumake
     htop
+    qmk
     vim
     virt-manager
     vscode-fhs
-    qmk
   ];
 
 }

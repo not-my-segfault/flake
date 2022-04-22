@@ -2,15 +2,18 @@
 
 {
 
-  boot.loader = {
-    systemd-boot = {
-      enable = true;
-      graceful = true;
+  boot = {
+    loader = {
+      systemd-boot = {
+        enable = true;
+        graceful = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+        efiSysMountPoint = "/boot/efi";
+      };
     };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
+    kernelPackages = pkgs.linuxPackages_xanmod;
   };
 
   networking = {

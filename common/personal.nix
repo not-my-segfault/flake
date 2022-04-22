@@ -14,11 +14,11 @@
   };
 
   environment.systemPackages = with pkgs; [
-    microsoft-edge-dev
     libreoffice
-    thunderbird
+    microsoft-edge-dev
     obs-studio
     skypeforlinux
+    thunderbird
     wine
     wine64
   ];

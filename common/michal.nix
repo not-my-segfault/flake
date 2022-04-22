@@ -72,6 +72,22 @@
     clear
   '';
 
+  home.file.".vimrc".text = ''
+    filetype indent on
+    filetype on
+    set ai
+    set cursorline
+    set nocompatible
+    set number
+    set si
+    set undodir=~/.vim/backup
+    set undofile
+    set undoreload=10000
+    set wildmenu
+    set wildmode=list:longest
+    syntax on
+  '';	
+
   home.packages = with pkgs; [
     bat
     bitwarden
@@ -83,6 +99,7 @@
     ncdu
     neofetch
     pfetch
+    thefuck
     xonsh
     zoxide
   ];
