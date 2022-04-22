@@ -90,12 +90,9 @@
 
   home.packages = with pkgs; [
     bat
-    bitwarden
-    discord
     duf
     exa
     fd
-    flameshot
     ncdu
     neofetch
     pfetch

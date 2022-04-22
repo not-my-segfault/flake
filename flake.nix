@@ -53,6 +53,25 @@
         }
       ];
     };
+    
+    nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
+      system = "aarch64-linux";
+      modules = [
+        ./rpi/hardware.nix
+        ./rpi/base.nix
+	./rpi/media.nix
+	./rpi/personal.nix
+        
+        ./common/nix.nix
+        ./common/yubikey.nix
+
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.michal = import ./common/michal.nix;
+        }
+      ];
+    };
   
   };
 
