@@ -13,7 +13,6 @@
   outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
   let 
     pkgs = import nixpkgs {
-      inherit system;
       overlays = [
         self.overlay
 	nixos-hardware
