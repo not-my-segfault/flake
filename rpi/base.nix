@@ -3,8 +3,9 @@
 {
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_rpi4;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
+      generic-extlinux-compatible.enable = false;
       systemd-boot = {
         enable = true;
         graceful = true;
