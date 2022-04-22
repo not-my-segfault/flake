@@ -32,11 +32,6 @@
 
   time.timeZone = "Europe/London";
 
-  hardware = {
-    enableRedistributableFirmware = true;
-    raspberry-pi."4".fkms-3d.enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
     libraspberrypi
   ];
