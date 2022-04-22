@@ -69,7 +69,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.michal = import ./common/michal.nix;
         }
-	nixos-hardware.nixosModules.raspberry-pi.4
+	nixos-hardware.nixosModules.raspberry-pi-4
       ];
       
     };
