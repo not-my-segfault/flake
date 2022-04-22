@@ -15,6 +15,9 @@
 
   environment.systemPackages = with pkgs; [
     flameshot
+    firefox
+    thunderbird
+    bitwarden
   ];
 
 }
