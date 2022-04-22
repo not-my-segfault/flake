@@ -3,7 +3,6 @@
 {
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       generic-extlinux-compatible.enable = false;
       systemd-boot = {
@@ -15,6 +14,9 @@
         efiSysMountPoint = "/boot/efi";
       };
     };
+    kernelParams = [
+      "cma=128M"
+    ];
   };
 
   networking = {
@@ -31,10 +33,13 @@
     };
   };
 
+  services.openssh.enable = true;
+
   time.timeZone = "Europe/London";
 
   environment.systemPackages = with pkgs; [
     libraspberrypi
+    vim
   ];
 
   system.stateVersion = "22.05";
