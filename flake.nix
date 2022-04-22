@@ -72,6 +72,7 @@
           home-manager.users.michal = import ./common/michal.nix;
         }
       ];
+      specialArgs = { inherit inputs; };
     };
   
   };
