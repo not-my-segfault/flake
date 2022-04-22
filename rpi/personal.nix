@@ -17,7 +17,6 @@
     flameshot
     firefox
     thunderbird
-    bitwarden
   ];
 
 }
