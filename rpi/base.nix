@@ -1,4 +1,4 @@
-{ pkgs, nixos-hardware, ... }:
+{ pkgs, ... }:
 
 {
 

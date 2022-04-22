@@ -11,7 +11,9 @@
   };
 
   outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
- 
+  let 
+    nixpkgs.overlays = [ nixos-hardware ];
+  in
   {
     nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -72,7 +74,7 @@
           home-manager.users.michal = import ./common/michal.nix;
         }
       ];
-      specialArgs = { inherit inputs; };
+      
     };
   
   };
