@@ -12,7 +12,13 @@
 
   outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
   let 
-    nixpkgs.overlays = [ nixos-hardware ];
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        self.overlay
+	nixos-hardware
+      ];
+    };
   in
   {
     nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
