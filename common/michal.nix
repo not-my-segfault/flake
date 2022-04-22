@@ -42,24 +42,27 @@
     
     source-bash ~/.nix-profile/etc/profile.d/hm-session-vars.sh
     
-    $PROMPT              = '{BOLD_GREEN}{short_cwd}{RESET}> '
-    $BOTTOM_TOOLBAR      = '{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}'
-    $EDITOR              = 'vim'
-    $PAGER               = 'less'
-    $PF_INFO             = 'ascii title os host kernel uptime memory palette'
-    $SSH_AUTH_SOCK       = '/run/user/1000/gnupg/S.gpg-agent.ssh'
-    $GPG_TTY             = $(tty)
+    
+    $BOTTOM_TOOLBAR               = '{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}'
+    $EDITOR                       = 'vim'
+    $GPG_TTY                      = $(tty)
+    $PAGER                        = 'less'
+    $PF_INFO                      = 'ascii title os host kernel uptime memory palette'
+    $PROMPT                       = '{BOLD_GREEN}{short_cwd}{RESET}> '
+    $SSH_AUTH_SOCK                = '/run/user/1000/gnupg/S.gpg-agent.ssh'
+    $THEFUCK_REQUIRE_CONFIRMATION = False
     
     # SPECIFIC XONSH CONFIG
     $COMPLETIONS_CONFIRM = True
     
     # ALIASES
-    aliases['cd']        = "z"
-    aliases['ls']        = "exa -la @($args) --colour=always | bat --style=numbers"
-    aliases['crs']       = "distrobox-enter --name crystal"
-    aliases['cat']       = "bat"
-    aliases['find']      = "fd"
-    aliases['clear']     = "env clear && pfetch"
+    aliases['cat']                = "bat"
+    aliases['cd']                 = "z"
+    aliases['clear']              = "env clear && pfetch"
+    aliases['crs']                = "distrobox-enter --name crystal"
+    aliases['find']               = "fd"
+    aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -i1)))
+    aliases['ls']                 = "exa -la @($args) --colour=always | bat --style=numbers"
      
     # ABBREVS
     abbrevs['nix-shell'] = "nix-shell --run xonsh"
