@@ -60,7 +60,7 @@
     aliases['clear']              = "env clear && pfetch"
     aliases['crs']                = "distrobox-enter --name crystal"
     aliases['find']               = "fd"
-    aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -i1)))
+    aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -1)))
     aliases['ls']                 = "exa -la @($args) --colour=always | bat --style=numbers"
      
     # ABBREVS
@@ -78,7 +78,6 @@
     filetype indent on
     filetype on
     set ai
-    set cursorline
     set nocompatible
     set number
     set si
