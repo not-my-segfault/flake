@@ -15,7 +15,7 @@
     pkgs = import nixpkgs {
       overlays = [
         self.overlay
-	nixos-hardware
+	nixos-hardware.overlay
       ];
     };
   in
@@ -64,6 +64,9 @@
     
     nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
+      nixpkgs = {
+        inherit pkgs;
+      };
       modules = [
         ./rpi/hardware.nix
         ./rpi/base.nix
