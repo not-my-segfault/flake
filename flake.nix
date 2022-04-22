@@ -5,20 +5,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-    };
+    home-manager.url = "github:nix-community/home-manager";
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs:
-  let 
-    pkgs = import nixpkgs {
-      overlays = [
-        self.overlay
-	nixos-hardware.overlay
-      ];
-    };
-  in
+  outputs = { nixpkgs, nixos-hardware, home-manager, ... }:
+  
   {
     nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -64,9 +55,6 @@
     
     nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
-      nixpkgs = {
-        inherit pkgs;
-      };
       modules = [
         ./rpi/hardware.nix
         ./rpi/base.nix
@@ -81,6 +69,7 @@
           home-manager.useUserPackages = true;
           home-manager.users.michal = import ./common/michal.nix;
         }
+	nixos-hardware.nixosModules.raspberry-pi.4
       ];
       
     };
