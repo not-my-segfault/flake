@@ -10,7 +10,7 @@
     };
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs:
   let 
     pkgs = import nixpkgs {
       overlays = [
