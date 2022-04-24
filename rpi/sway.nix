@@ -15,6 +15,7 @@
       ];
     };
     qt5ct.enable = true;
+    xwayland.enable = true;
   };
 
   environment = {
