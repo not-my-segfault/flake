@@ -40,8 +40,8 @@
     import os
     xontrib load bashisms abbrevs
     
-    source-bash ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-    
+    source-bash /etc/profile
+
     $BOTTOM_TOOLBAR               = '{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}'
     $EDITOR                       = 'vim'
     $GPG_TTY                      = $(tty)
