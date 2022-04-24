@@ -24,6 +24,7 @@
   environment = {
     systemPackages = with pkgs; [ 
       polkit_gnome
+			gnome-themes-extra
       gtk-engine-murrine
       gtk_engines
       gsettings-desktop-schemas
