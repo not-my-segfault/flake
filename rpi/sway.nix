@@ -16,6 +16,7 @@
 				wofi
       ];
     };
+		qt5ct.enable = true;
     xwayland.enable = true;
   };
 
@@ -34,6 +35,9 @@
       jq
     ];
     pathsToLink = [ "/libexec" ];
+		sessionVariables = {
+			QT_QPA_PLATFORMTHEME = "qt5ct";
+		};
   };
 
 }
