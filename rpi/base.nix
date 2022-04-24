@@ -28,7 +28,7 @@
       "10.0.0.12" = [ "EPSON69B65D.local" ];
     };
     interfaces = {
-      enabcm6e4ei0.useDHCP = true;
+      eth0.useDHCP = true;
       wlan0.useDHCP = true;
     };
   };
