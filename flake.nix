@@ -60,7 +60,7 @@
         ./rpi/base.nix
 	./rpi/media.nix
 	./rpi/personal.nix
-        ./rpi/kde.nix
+        ./rpi/sway.nix
 
         ./common/nix.nix
         ./common/yubikey.nix
