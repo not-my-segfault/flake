@@ -8,6 +8,8 @@
       extraPackages = with pkgs; [
 	swaylock
 	swayidle
+	sway-contrib.grimshot
+	sway-contrib.inactive-windows-transparency
 	wl-clipboard
 	mako
 	foot

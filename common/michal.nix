@@ -88,11 +88,14 @@
     syntax on
   '';	
 
+  home.file.".config/sway/config".source = ./sway.conf;
+
   home.packages = with pkgs; [
     bat
     duf
     exa
     fd
+    htop
     ncdu
     neofetch
     pfetch

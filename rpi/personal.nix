@@ -14,9 +14,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    flameshot
     firefox
-    qutebrowser
     thunderbird
   ];
 
