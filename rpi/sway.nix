@@ -27,6 +27,7 @@
       gtk_engines
       gsettings-desktop-schemas
       lxappearance
+      jq
     ];
     pathsToLink = [ "/libexec" ];
     variables = rec {

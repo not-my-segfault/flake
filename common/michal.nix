@@ -4,7 +4,7 @@
     allowUnfree = true;
   };
 
-  programs.git = {
+	programs.git = {
     enable = true;
     userName = "Michal";
     userEmail = "michal@tar.black";
@@ -80,6 +80,8 @@
     set ai
     set number
     set si
+    set ts=2
+    set sw=2
     set undodir=~/.vim/backup
     set undofile
     set undoreload=10000
