@@ -88,7 +88,7 @@
     syntax on
   '';	
 
-  home.file.".config/sway/config".source = ./sway.conf;
+  xdg.configFile."sway/config".source = ./sway.conf;
 
   home.packages = with pkgs; [
     bat
