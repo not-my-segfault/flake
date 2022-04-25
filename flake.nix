@@ -23,7 +23,7 @@
         pkgs.mkShell {
           buildInputs = with pkgs; [
             nix-linter
-            nixpkgs-fmt
+            nixfmt
           ];
         }
       );

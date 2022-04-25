@@ -9,9 +9,7 @@
     extraGroups = [ "wheel" ];
   };
 
-  security.sudo = {
-    extraConfig = "Defaults pwfeedback";
-  };
+  security.sudo = { extraConfig = "Defaults pwfeedback"; };
 
   environment.systemPackages = with pkgs; [
     bitwarden

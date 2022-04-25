@@ -1,10 +1,7 @@
 { config, lib, modulesPath, ... }:
 
 {
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot = {
     initrd = {
@@ -15,23 +12,20 @@
     extraModulePackages = [ ];
   };
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/f8389135-3bf7-4f32-90f7-af973386d673";
-      fsType = "btrfs";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/f8389135-3bf7-4f32-90f7-af973386d673";
+    fsType = "btrfs";
+  };
 
-  fileSystems."/boot/efi" =
-    {
-      device = "/dev/disk/by-uuid/B35C-A89E";
-      fsType = "vfat";
-    };
+  fileSystems."/boot/efi" = {
+    device = "/dev/disk/by-uuid/B35C-A89E";
+    fsType = "vfat";
+  };
 
-  fileSystems."/hdd" =
-    {
-      device = "/dev/disk/by-uuid/51f3b84c-2bf2-4cda-a514-d6d912e63e32";
-      fsType = "btrfs";
-    };
+  fileSystems."/hdd" = {
+    device = "/dev/disk/by-uuid/51f3b84c-2bf2-4cda-a514-d6d912e63e32";
+    fsType = "btrfs";
+  };
 
   swapDevices =
     [{ device = "/dev/disk/by-uuid/7159a906-144c-4cd4-8b24-831240bdc992"; }];
@@ -45,5 +39,6 @@
   };
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

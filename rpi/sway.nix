@@ -35,9 +35,7 @@
       jq
     ];
     pathsToLink = [ "/libexec" ];
-    sessionVariables = {
-      QT_QPA_PLATFORMTHEME = "qt5ct";
-    };
+    sessionVariables = { QT_QPA_PLATFORMTHEME = "qt5ct"; };
   };
 
 }

@@ -14,9 +14,7 @@
         efiSysMountPoint = "/boot/efi";
       };
     };
-    kernelParams = [
-      "cma=128M"
-    ];
+    kernelParams = [ "cma=128M" ];
   };
 
   networking = {
@@ -37,10 +35,7 @@
 
   time.timeZone = "Europe/London";
 
-  environment.systemPackages = with pkgs; [
-    libraspberrypi
-    vim
-  ];
+  environment.systemPackages = with pkgs; [ libraspberrypi vim ];
 
   system.stateVersion = "22.05";
 

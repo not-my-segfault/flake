@@ -1,8 +1,6 @@
 { pkgs, ... }: {
 
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
+  nixpkgs.config = { allowUnfree = true; };
 
   programs.git = {
     enable = true;
@@ -39,7 +37,7 @@
     # INIT AND ENVVARS
     import os
     xontrib load bashisms abbrevs
-    
+
     source-bash /etc/profile
 
     $BOTTOM_TOOLBAR               = '{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}'
@@ -50,10 +48,10 @@
     $PROMPT                       = '{BOLD_GREEN}{short_cwd}{RESET}> '
     $SSH_AUTH_SOCK                = '/run/user/1000/gnupg/S.gpg-agent.ssh'
     $THEFUCK_REQUIRE_CONFIRMATION = True
-    
+
     # SPECIFIC XONSH CONFIG
     $COMPLETIONS_CONFIRM = True
-    
+
     # ALIASES
     aliases['cat']                = "bat"
     aliases['cd']                 = "z"
@@ -65,10 +63,10 @@
      
     # ABBREVS
     abbrevs['nix-shell'] = "nix-shell --run xonsh"
-    
+
     # ZOXIDE
     execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
-    
+
     # GENERAL STUFF TO RUN
     gpg-connect-agent updatestartuptty /bye > /dev/null
     clear

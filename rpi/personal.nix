@@ -9,13 +9,8 @@
     extraGroups = [ "wheel" ];
   };
 
-  security.sudo = {
-    extraConfig = "Defaults pwfeedback";
-  };
+  security.sudo = { extraConfig = "Defaults pwfeedback"; };
 
-  environment.systemPackages = with pkgs; [
-    firefox
-    thunderbird
-  ];
+  environment.systemPackages = with pkgs; [ firefox thunderbird ];
 
 }
