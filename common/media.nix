@@ -18,7 +18,7 @@
   services = {
     printing = {
       enable = true;
-      drivers = with pkgs; [ 
+      drivers = with pkgs; [
         epson-escpr
         epson-escpr2
       ];

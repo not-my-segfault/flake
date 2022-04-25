@@ -22,7 +22,7 @@
   };
 
   time.timeZone = "Europe/London";
-  
+
   services = {
     xserver.libinput.enable = true;
     tlp.enable = true;

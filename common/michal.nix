@@ -4,7 +4,7 @@
     allowUnfree = true;
   };
 
-	programs.git = {
+  programs.git = {
     enable = true;
     userName = "Michal";
     userEmail = "michal@tar.black";
@@ -88,7 +88,7 @@
     set wildmenu
     set wildmode=list:longest
     syntax on
-  '';	
+  '';
 
   xdg.configFile."sway/config".source = ./sway.conf;
 
