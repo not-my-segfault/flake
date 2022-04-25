@@ -4,31 +4,23 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-		utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
   };
 
-  outputs = { nixpkgs, flake-utils, nixos-hardware, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
 
-		let
-			supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
-			forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-			nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
-		in
-		{
-			devShell = forAllSystems (system:
-			  let pkgs = nixpkgsFor.${system};
-				in
-				pkgs.mkShell {
-					buildInputs = with pkgs; [
-					  nix-linter
-						statix
-						nixfmt
-					];
-				}
-			);
+    let
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
+    in {
+      devShell = forAllSystems (system:
+        let pkgs = nixpkgsFor.${system};
+        in pkgs.mkShell {
+          buildInputs = with pkgs; [ nix-linter statix nixfmt ];
+        });
 
       nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -77,7 +69,7 @@
       nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ( _ : { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
+          (_: { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
 
           ./rpi/hardware.nix
           ./rpi/base.nix
@@ -87,7 +79,6 @@
 
           ./common/nix.nix
           ./common/yubikey.nix
-
 
           home-manager.nixosModules.home-manager
           {
