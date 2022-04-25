@@ -9,7 +9,7 @@
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, ... }:
+  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
 
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -23,6 +23,7 @@
         pkgs.mkShell {
           buildInputs = with pkgs; [
             nix-linter
+						statix
             nixfmt
           ];
         }
@@ -75,7 +76,7 @@
       nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ({ inputs, ... }: { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
+          ( _ : { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
 
           ./rpi/hardware.nix
           ./rpi/base.nix
