@@ -13,6 +13,7 @@
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot/efi";
       };
+      timeout = 5;
     };
     kernelParams = [ "cma=128M" ];
   };
@@ -31,12 +32,12 @@
     };
   };
 
-	zramSwap = {
-		enable = true;
-		algorithm = "zstd";
-	};
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+  };
 
-  services.openssh.enable = true;
+  services = { openssh.enable = true; };
 
   time.timeZone = "Europe/London";
 
