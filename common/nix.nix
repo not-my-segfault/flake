@@ -2,7 +2,9 @@
 
   nixpkgs.config.allowUnfree = true;
   nix = {
-    autoOptimiseStore = true;
+    settings = {
+			auto-optimise-store = true;
+		};
     gc = {
       automatic = true;
       dates = "daily";
@@ -12,5 +14,11 @@
       experimental-features = nix-command flakes
     '';
   };
+
+	system.autoUpgrade = {
+		enable = true;
+		flake = "https://git.tar.black/michal/nixos-flake?rev=main";
+		dates = "daily";
+	};
 
 }

@@ -31,6 +31,11 @@
     };
   };
 
+	zramSwap = {
+		enable = true;
+		algorithm = "zstd";
+	};
+
   services.openssh.enable = true;
 
   time.timeZone = "Europe/London";
