@@ -7,9 +7,10 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    musnix.url = "github:musnix/musnix";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, musnix, ... }@inputs:
 
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -29,6 +30,7 @@
           ./station/base.nix
           ./station/dev.nix
           ./station/gaming.nix
+          ./station/music.nix
 
           ./common/kde.nix
           ./common/media.nix
@@ -42,6 +44,8 @@
             home-manager.useUserPackages = true;
             home-manager.users.michal = import ./common/michal.nix;
           }
+
+	  musnix.nixosModules.musnix
         ];
       };
 
