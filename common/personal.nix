@@ -6,7 +6,7 @@
     description = "Michal";
     shell = pkgs.xonsh;
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "audio" "video" ];
   };
 
   security.sudo = { extraConfig = "Defaults pwfeedback"; };
