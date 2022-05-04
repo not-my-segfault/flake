@@ -41,6 +41,7 @@
       copilot-vim
       taglist-vim
       rainbow
+      vim-gitgutter
     ];
     settings = {
       number = true;
