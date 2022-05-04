@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+
+{
 
   nixpkgs.config = { allowUnfree = true; };
 
@@ -32,6 +34,22 @@
       default-key = "A6A1A4DCB22279B9";
     };
   };
+
+  programs.vim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      copilot-vim
+      taglist-vim
+      rainbow
+    ];
+    settings = {
+      number = true;
+      expandtab = true;
+      shiftwidth = 2;
+      tabstop = 2;
+    };
+  };
+  
 
   home.file.".xonshrc".text = ''
     # INIT AND ENVVARS
@@ -72,21 +90,6 @@
     clear
   '';
 
-  home.file.".vimrc".text = ''
-    filetype indent on
-    filetype on
-    set ai
-    set number
-    set si
-    set ts=2
-    set sw=2
-    set undodir=~/.vim/backup
-    set undofile
-    set undoreload=10000
-    set wildmenu
-    set wildmode=list:longest
-    syntax on
-  '';
 
   xdg.configFile."sway/config".source = ./sway.conf;
 
@@ -98,8 +101,10 @@
     htop
     ncdu
     neofetch
+    nodejs-slim
     pfetch
     thefuck
+    universal-ctags
     xonsh
     zoxide
   ];
