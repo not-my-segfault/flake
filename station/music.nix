@@ -2,7 +2,14 @@
 
 {
 
-  environment.systemPackages = with pkgs; [    zrythm
+  environment.systemPackages = with pkgs; [    
+    zrythm
+    surge
+    zam-plugins
+    geonkick
+    x42-plugins
+    helm
+    distrho
   ];
 
   security.pam.loginLimits = [
