@@ -4,7 +4,7 @@
 
   environment.systemPackages = with pkgs; [    
     zrythm
-    surge
+#   surge
     zam-plugins
     geonkick
     x42-plugins
