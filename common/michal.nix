@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 
 {
 
@@ -50,7 +50,6 @@
       tabstop = 2;
     };
   };
-  
 
   home.file.".xonshrc".text = ''
     # INIT AND ENVVARS
@@ -90,7 +89,6 @@
     gpg-connect-agent updatestartuptty /bye > /dev/null
     clear
   '';
-
 
   xdg.configFile."sway/config".source = ./sway.conf;
 

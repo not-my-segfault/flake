@@ -4,8 +4,6 @@
 
   programs.steam.enable = true;
   hardware = {
-    xpadneo.enable = true;
-    xone.enable = true;
     opengl = {
       enable = true;
       driSupport32Bit = true;

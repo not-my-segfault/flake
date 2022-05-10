@@ -12,8 +12,6 @@
   environment.systemPackages = with pkgs; [
     ark
     kate
-    kcharselect
-    kgpg
     kstars
     plasma-browser-integration
     sddm-kcm

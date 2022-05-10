@@ -18,6 +18,7 @@
     git
     gnumake
     htop
+    qbittorrent
     qmk
     vim
     virt-manager
