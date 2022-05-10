@@ -45,7 +45,7 @@
             home-manager.users.michal = import ./common/michal.nix;
           }
 
-	  musnix.nixosModules.musnix
+          musnix.nixosModules.musnix
         ];
       };
 
@@ -90,6 +90,7 @@
             home-manager.useUserPackages = true;
             home-manager.users.michal = import ./common/michal.nix;
           }
+
           nixos-hardware.nixosModules.raspberry-pi-4
         ];
       };
