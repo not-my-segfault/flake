@@ -4,6 +4,7 @@
 
   environment.systemPackages = with pkgs; [
     zrythm
+    muse
     zam-plugins
     geonkick
     x42-plugins

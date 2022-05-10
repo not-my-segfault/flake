@@ -46,6 +46,14 @@
           }
 
           musnix.nixosModules.musnix
+          {
+            musnix.enable = true;
+#           musnix.kernel = {
+#             optimize = true;
+#             realtime = true;
+#             packages = nixpkgs.legacyPackages.x86_64-linux.linuxPackages-rt_latest;
+#           };
+          }
         ];
       };
 
