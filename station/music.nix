@@ -4,7 +4,8 @@
 
   environment.systemPackages = with pkgs; [
     helm
-    sonic-pi
   ];
+
+  services.flatpak.enable = true;
 
 }

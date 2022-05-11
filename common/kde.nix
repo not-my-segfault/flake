@@ -14,6 +14,7 @@
     kate
     kstars
     plasma-browser-integration
+    kde-gtk-config
     sddm-kcm
   ];
 
