@@ -2,6 +2,10 @@
 
 {
 
+  services = {
+    udev.packages = with pkgs; [ qmk-udev-rules ];
+  };
+
   virtualisation = {
     podman = {
       enable = true;
@@ -22,7 +26,6 @@
     qmk
     vim
     virt-manager
-    vscode-fhs
   ];
 
 }

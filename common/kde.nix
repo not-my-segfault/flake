@@ -15,7 +15,6 @@
     kstars
     plasma-browser-integration
     sddm-kcm
-    xwayland
   ];
 
 }

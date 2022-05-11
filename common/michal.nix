@@ -39,7 +39,6 @@
     enable = true;
     plugins = with pkgs.vimPlugins; [
       copilot-vim
-      taglist-vim
       rainbow
       vim-gitgutter
     ];
@@ -103,7 +102,6 @@
     nodejs-slim
     pfetch
     thefuck
-    universal-ctags
     xonsh
     zoxide
   ];

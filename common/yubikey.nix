@@ -3,7 +3,7 @@
 {
 
   services = {
-    udev.packages = with pkgs; [ yubikey-personalization qmk-udev-rules ];
+    udev.packages = with pkgs; [ yubikey-personalization ];
     pcscd.enable = true;
   };
 
