@@ -29,6 +29,7 @@
           ./station/base.nix
           ./station/dev.nix
           ./station/gaming.nix
+          ./station/music.nix
 
           ./common/kde.nix
           ./common/media.nix

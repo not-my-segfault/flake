@@ -13,7 +13,6 @@
   environment.systemPackages = with pkgs; [
     gamemode
     lutris
-    helm
     polymc
     vulkan-tools
   ];
