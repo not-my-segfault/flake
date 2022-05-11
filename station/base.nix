@@ -13,7 +13,7 @@
         efiSysMountPoint = "/boot/efi";
       };
     };
-    kernelPackages = pkgs.linuxPackages-xanmod_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod;
   };
 
   networking = {
