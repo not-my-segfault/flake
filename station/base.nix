@@ -13,11 +13,12 @@
         efiSysMountPoint = "/boot/efi";
       };
     };
-    kernelPackages = pkgs.linuxPackages-rt_latest;
+    kernelPackages = pkgs.linuxPackages-xanmod_latest;
   };
 
   networking = {
     hostName = "nixos-station";
+    networkmanager.enable = true;
     useDHCP = false;
     hosts = {
       "10.0.0.16" = [ "git.tar.black" ];

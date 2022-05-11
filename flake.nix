@@ -30,7 +30,6 @@
           ./station/base.nix
           ./station/dev.nix
           ./station/gaming.nix
-          ./station/music.nix
 
           ./common/kde.nix
           ./common/media.nix
@@ -43,16 +42,6 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.michal = import ./common/michal.nix;
-          }
-
-          musnix.nixosModules.musnix
-          {
-            musnix.enable = true;
-#           musnix.kernel = {
-#             optimize = true;
-#             realtime = true;
-#             packages = nixpkgs.legacyPackages.x86_64-linux.linuxPackages-rt_latest;
-#           };
           }
         ];
       };
