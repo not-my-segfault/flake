@@ -7,10 +7,9 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-    musnix.url = "github:musnix/musnix";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, musnix, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
 
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
