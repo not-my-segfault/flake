@@ -22,6 +22,7 @@
     git
     gnumake
     htop
+    okteta
     qbittorrent
     qmk
     vim
