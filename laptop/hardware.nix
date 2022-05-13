@@ -21,7 +21,7 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/120536aa-b2c9-45d6-ba2b-d9cb8bw81cc7";
+    device = "/dev/disk/by-uuid/120536aa-b2c9-45d6-ba2b-d9cb8bd81cc7";
     fsType = "btrfs";
   };
 
