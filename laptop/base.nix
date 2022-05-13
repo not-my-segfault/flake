@@ -13,7 +13,7 @@
     networkmanager.enable = true;
     useDHCP = false;
     hosts = {
-      "10.0.0.15" = [ "git.tar.black" ];
+      "10.0.0.16" = [ "git.tar.black" ];
       "10.0.0.12" = [ "EPSON69B65D.local" ];
     };
     interfaces = {
