@@ -2,7 +2,9 @@
 
   boot.loader = {
     systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
   };
 
   networking = {
@@ -27,6 +29,6 @@
     auto-cpufreq.enable = true;
   };
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.05";
 
 }
