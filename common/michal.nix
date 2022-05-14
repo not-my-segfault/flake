@@ -50,10 +50,17 @@
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv = {
+      enable = true;
+    };
+  };
+
   home.file.".xonshrc".text = ''
     # INIT AND ENVVARS
     import os
-    xontrib load bashisms abbrevs
+    xontrib load bashisms abbrevs direnv gitinfo
 
     source-bash /etc/profile
 
@@ -64,6 +71,7 @@
     $PF_INFO                      = 'ascii title os host kernel uptime memory palette'
     $PROMPT                       = '{BOLD_GREEN}{short_cwd}{RESET}> '
     $SSH_AUTH_SOCK                = '/run/user/1000/gnupg/S.gpg-agent.ssh'
+    $DIRENV_LOG_FORMAT            = ""
     $THEFUCK_REQUIRE_CONFIRMATION = True
 
     # SPECIFIC XONSH CONFIG

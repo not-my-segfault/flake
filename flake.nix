@@ -25,12 +25,13 @@
       nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./station/hardware.nix
           ./station/base.nix
-          ./station/dev.nix
           ./station/gaming.nix
+          ./station/hardware.nix
           ./station/music.nix
+          ./station/qmk.nix
 
+          ./common/dev.nix
           ./common/kde.nix
           ./common/media.nix
           ./common/nix.nix
@@ -52,6 +53,7 @@
           ./laptop/base.nix
           ./laptop/hardware.nix
 
+          ./common/dev.nix
           ./common/kde.nix
           ./common/media.nix
           ./common/nix.nix
@@ -72,12 +74,15 @@
         modules = [
           (_: { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
 
-          ./rpi/hardware.nix
           ./rpi/base.nix
+          ./rpi/hardware.nix
           ./rpi/media.nix
           ./rpi/personal.nix
           ./rpi/sway.nix
 
+          ./station/qmk.nix
+
+          ./common/dev.nix
           ./common/nix.nix
           ./common/yubikey.nix
 
