@@ -78,7 +78,7 @@
     aliases['crs']                = "distrobox-enter --name crystal"
     aliases['find']               = "fd"
     aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -1)))
-    aliases['ls']                 = "exa -la @($args) --colour=always | bat --style=numbers"
+    aliases['ls']                 = "lsd -A"
      
     # ABBREVS
     abbrevs['nix-shell'] = "nix-shell --run xonsh"
@@ -96,12 +96,12 @@
   home.packages = with pkgs; [
     bat
     duf
-    exa
     fd
     htop
     ncdu
     neofetch
     nodejs-slim
+    lsd
     pfetch
     thefuck
     xonsh
