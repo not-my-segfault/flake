@@ -37,11 +37,7 @@
 
   programs.vim = {
     enable = true;
-    plugins = with pkgs.vimPlugins; [
-      copilot-vim
-      rainbow
-      vim-gitgutter
-    ];
+    plugins = with pkgs.vimPlugins; [ copilot-vim rainbow vim-gitgutter ];
     settings = {
       number = true;
       expandtab = true;
@@ -52,9 +48,7 @@
 
   programs.direnv = {
     enable = true;
-    nix-direnv = {
-      enable = true;
-    };
+    nix-direnv = { enable = true; };
   };
 
   home.file.".xonshrc".text = ''

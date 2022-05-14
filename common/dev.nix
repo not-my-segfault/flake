@@ -1,13 +1,11 @@
 { pkgs, ... }:
 
-let  
+let
   mach-nix = import (builtins.fetchGit {
     url = "https://github.com/DavHau/mach-nix/";
     rev = "26f06e415a74dc10727cf9c9a40c83b635238900";
-  }) {
-    pkgs = pkgs;
-  };
-  
+  }) { inherit pkgs; };
+
   pyenv = mach-nix.mkPython {
     requirements = ''
       xonsh-direnv
@@ -17,10 +15,10 @@ let
   };
 
   xonsh_with_plugins = pkgs.xonsh.overrideAttrs (old: {
-    propagatedBuildInputs = old.propagatedBuildInputs ++ pyenv.python.pkgs.selectPkgs pyenv.python.pkgs;
+    propagatedBuildInputs = old.propagatedBuildInputs
+      ++ pyenv.python.pkgs.selectPkgs pyenv.python.pkgs;
   });
-in
-{
+in {
 
   virtualisation = {
     podman = {
