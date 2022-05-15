@@ -1,11 +1,12 @@
-with (import <nixpkgs> {});
+with (import <nixpkgs> { });
 
 let
   mcVersion = "1.18.2";
   fabricVersion = "0.14.5";
   installerVersion = "0.10.2";
   jar = fetchurl {
-    url = "https://meta.fabricmc.net/v2/versions/loader/${mcVersion}/${fabricVersion}/${installerVersion}/server/jar";
+    url =
+      "https://meta.fabricmc.net/v2/versions/loader/${mcVersion}/${fabricVersion}/${installerVersion}/server/jar";
     sha256 = "7TEK52q0uD+cVRcRVxcQP7BP9IMyY1IuxBf8YS0uG1E=";
   };
 in stdenv.mkDerivation {

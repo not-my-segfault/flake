@@ -6,8 +6,7 @@ let
   gitlabHost = "git.nixos.local";
   httpsEnabled = false;
   adminEmail = "michal@tar.black";
-in
-{
+in {
 
   services.gitlab = {
     enable = true;
@@ -23,7 +22,9 @@ in
     extraGitlabRb = ''
       nginx['enable'] = false
       puma['port'] = ${toString (gitlabPort + 1)}
-      gitlab_workhorse['auth_backend'] = "http://localhost:${toString (gitlabPort + 1)}"
+      gitlab_workhorse['auth_backend'] = "http://localhost:${
+        toString (gitlabPort + 1)
+      }"
       external_url = "http://127.0.0.1:${toString gitlabPort}"
     '';
     initialRootEmail = adminEmail;
@@ -36,7 +37,7 @@ in
     recommendedProxySettings = true;
     virtualHosts."${gitlabHost}" = {
       locations."/" = {
-#       proxyPass = "http://unix:/var/gitlab/state/tmp/sockets/gitlab.socket";
+        #       proxyPass = "http://unix:/var/gitlab/state/tmp/sockets/gitlab.socket";
         proxyPass = "http://127.0.0.1:${toString gitlabPort}$request_uri";
       };
     };
@@ -49,13 +50,8 @@ in
   ];
 
   networking = {
-    firewall.allowedTCPPorts = [
-      22
-      gitlabPort
-    ];
-    hosts = {
-      "127.0.0.1" = [ gitlabHost ];
-    };
+    firewall.allowedTCPPorts = [ 22 gitlabPort ];
+    hosts = { "127.0.0.1" = [ gitlabHost ]; };
   };
 
 }
