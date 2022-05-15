@@ -31,8 +31,6 @@
           ./station/music.nix
           ./station/qmk.nix
 
-          #         ./gitlab.nix
-
           ./common/dev.nix
           ./common/kde.nix
           ./common/media.nix
