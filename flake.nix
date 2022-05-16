@@ -77,7 +77,7 @@
           ./rpi/base.nix
           ./rpi/hardware.nix
 #         ./rpi/media.nix
-#         ./rpi/personal.nix
+          ./rpi/personal.nix
 #         ./rpi/sway.nix
 
           ./server/mc-server.nix
