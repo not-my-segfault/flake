@@ -23,7 +23,7 @@ in stdenv.mkDerivation {
   buildPhase = ''
     cat > minecraft-server << EOF
     #!${pkgs.bash}/bin/sh
-    exec ${pkgs.jre8}/bin/java -jar $out/share/forge-mc/forge-${mcVersion}-${forgeVersion}.jar nogui
+    exec ${pkgs.jre8}/bin/java "''${@:2}" -jar $out/share/forge-mc/forge-${mcVersion}-${forgeVersion}.jar nogui
   '';
 
   installPhase = ''
