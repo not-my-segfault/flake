@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
 
   users.users.michal = {
     description = "Michal";
-    shell = pkgs.xonsh;
+    shell = lib.mkDefault pkgs.xonsh;
     isNormalUser = true;
     extraGroups = [ "wheel" ];
   };

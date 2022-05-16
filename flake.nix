@@ -79,12 +79,12 @@
 #         ./rpi/media.nix
           ./rpi/personal.nix
 #         ./rpi/sway.nix
+          ./rpi/dev.nix
 
           ./server/mc-server.nix
 
-#         ./station/qmk.nix
+          ./station/qmk.nix
 
-#         ./common/dev.nix
           ./common/nix.nix
           ./common/yubikey.nix
 
