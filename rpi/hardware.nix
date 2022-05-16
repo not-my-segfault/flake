@@ -13,17 +13,17 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/2310a805-21a9-48d5-a6e9-202632025c04";
+    device = "/dev/disk/by-label/ROOT";
     fsType = "btrfs";
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/767B-DEFE";
+    device = "/dev/disk/by-label/EFI";
     fsType = "vfat";
   };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/8f8f731f-be83-4f9f-a9ba-d009d376673b"; }];
+    [{ device = "/dev/disk/by-label/SWAP"; }];
 
   networking = {
     useDHCP = lib.mkDefault false;

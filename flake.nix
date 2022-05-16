@@ -31,8 +31,6 @@
           ./station/music.nix
           ./station/qmk.nix
 
-          ./server/mc-server.nix
-
           ./common/dev.nix
           ./common/kde.nix
           ./common/media.nix
@@ -74,17 +72,19 @@
       nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          (_: { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
+#         (_: { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
 
           ./rpi/base.nix
           ./rpi/hardware.nix
-          ./rpi/media.nix
-          ./rpi/personal.nix
-          ./rpi/sway.nix
+#         ./rpi/media.nix
+#         ./rpi/personal.nix
+#         ./rpi/sway.nix
 
-          ./station/qmk.nix
+          ./server/mc-server.nix
 
-          ./common/dev.nix
+#         ./station/qmk.nix
+
+#         ./common/dev.nix
           ./common/nix.nix
           ./common/yubikey.nix
 

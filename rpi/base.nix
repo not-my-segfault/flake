@@ -15,7 +15,7 @@
       };
       timeout = 5;
     };
-    kernelParams = [ "cma=128M" ];
+#   kernelParams = [ "cma=128M" ];
   };
 
   networking = {

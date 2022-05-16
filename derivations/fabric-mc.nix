@@ -1,4 +1,8 @@
-with (import <nixpkgs> { });
+
+{ pkgs
+, stdenv
+, fetchurl
+}:
 
 let
   mcVersion = "1.18.2";
@@ -11,7 +15,7 @@ let
   };
 in stdenv.mkDerivation {
   pname = "fabric-mc";
-  version = "${mcVersion}v${fabricVersion}";
+  version = "${mcVersion}-${fabricVersion}-${installerVersion}";
 
   preferLocalBuild = true;
 
@@ -21,7 +25,7 @@ in stdenv.mkDerivation {
   buildPhase = ''
     cat > minecraft-server << EOF
     #!${bash}/bin/sh
-    exec ${jre}/bin/java \$@ -jar $out/share/fabric-mc/fabric-server-mc.${mcVersion}-loader.${fabricVersion}-launcher.${installerVersion}.jar nogui
+    exec ${jdk17_headless}/bin/java \$@ -jar $out/share/fabric-mc/fabric-server-mc.${mcVersion}-loader.${fabricVersion}-launcher.${installerVersion}.jar nogui
   '';
 
   installPhase = ''

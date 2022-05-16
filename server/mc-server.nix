@@ -1,14 +1,14 @@
 { pkgs, ... }:
 
 let
-  pkgs.fabric-mc = import ../derivations/fabric-mc.nix;
-  pkgs.forge-mc = import ../derivations/forge-mc.nix;
+  fabric-mc = pkgs.callPackage ../derivations/fabric-mc.nix { };
+  forge-mc = pkgs.callPackage ../derivations/forge-mc.nix { };
 in {
 
   services.minecraft-server = {
     enable = true;
     declarative = true;
-    package = pkgs.forge-mc;
+    package = forge-mc;
     eula = true;
     whitelist = {
       jnats = "07d59f96-8b4e-49a8-9f14-9ec28d7efc5d";
