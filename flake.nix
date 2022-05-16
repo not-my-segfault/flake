@@ -31,6 +31,8 @@
           ./station/music.nix
           ./station/qmk.nix
 
+          ./server/mc-server.nix
+
           ./common/dev.nix
           ./common/kde.nix
           ./common/media.nix

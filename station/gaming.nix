@@ -14,6 +14,8 @@
     gamemode
     lutris
     polymc
+    jdk8
+    jdk17
     vulkan-tools
   ];
 
