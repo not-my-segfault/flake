@@ -33,7 +33,6 @@ in {
     distrobox
     htop
     okteta
-    onefetch
     qbittorrent
     virt-manager
   ];

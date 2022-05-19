@@ -100,6 +100,8 @@
     htop
     ncdu
     neofetch
+    onefetch
+    w3m
     nodejs-slim
     lsd
     pfetch
