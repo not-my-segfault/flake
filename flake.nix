@@ -6,7 +6,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+#   nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
   };
 
   outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
