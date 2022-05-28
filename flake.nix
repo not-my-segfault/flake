@@ -81,7 +81,7 @@
 #         ./rpi/sway.nix
           ./rpi/dev.nix
 
-          ./server/mc-server.nix
+#         ./server/mc-server.nix
 
           ./station/qmk.nix
 
