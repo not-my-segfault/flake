@@ -69,6 +69,22 @@
         ];
       };
 
+      nixosConfigurations."nixos-wsl" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./common/dev.nix
+          ./common/nix.nix
+          ./common/personal.nix
+        ]
+
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.michal = import ./common/michal.nix;
+        }
+      }
+
       nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
