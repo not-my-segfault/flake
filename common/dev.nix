@@ -7,7 +7,6 @@
       enable = true;
       dockerCompat = true;
     };
-    libvirtd.enable = true;
   };
 
   environment.systemPackages = with pkgs; [

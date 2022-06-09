@@ -72,6 +72,8 @@
       nixosConfigurations."nixos-wsl" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          ./wsl/base.nix
+
           ./common/dev.nix
           ./common/nix.nix
           ./common/personal.nix
@@ -91,7 +93,7 @@
             wsl.startMenuLaunchers = true;
           }
         ];
-      }
+      };
 
       nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
