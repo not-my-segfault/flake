@@ -93,6 +93,7 @@
             wsl.automountPath = "/mnt";
             wsl.defaultUser = "michal";
             wsl.startMenuLaunchers = true;
+            wsl.includePath = false;
           }
         ];
       };

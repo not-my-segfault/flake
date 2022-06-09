@@ -12,5 +12,5 @@
         thunderbird
         wine
         wine64
-    ]
+    ];
 }
