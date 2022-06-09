@@ -6,10 +6,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
-#   nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, ... }@inputs:
 
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -75,14 +75,22 @@
           ./common/dev.nix
           ./common/nix.nix
           ./common/personal.nix
-        ]
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.michal = import ./common/michal.nix;
-        }
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.michal = import ./common/michal.nix;
+          }
+
+          nixos-wsl.nixosModules.wsl
+          {
+            wsl.enable = true;
+            wsl.automountPath = "/mnt";
+            wsl.defaultUser = "michal";
+            wsl.startMenuLaunchers = true;
+          }
+        ];
       }
 
       nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
