@@ -22,7 +22,7 @@ in
 
   users.users.michal = {
     description = "Michal";
-    shell = pkgs.xonsh_with_plugins;
+    shell = xonsh_with_plugins;
     isNormalUser = true;
     extraGroups = [ "wheel" "audio" "video" "disco" ]; # hahahahahaha avd
   };
