@@ -64,7 +64,6 @@
     $PAGER                        = 'less'
     $PF_INFO                      = 'ascii title os host kernel uptime memory palette'
     $PROMPT                       = '{BOLD_GREEN}{short_cwd}{RESET}> '
-    $SSH_AUTH_SOCK                = '/run/user/1000/gnupg/S.gpg-agent.ssh'
     $DIRENV_LOG_FORMAT            = ""
     $THEFUCK_REQUIRE_CONFIRMATION = True
 
@@ -79,12 +78,18 @@
     aliases['find']               = "fd"
     aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -1)))
     aliases['ls']                 = "lsd -A"
-     
+    
     # ABBREVS
     abbrevs['nix-shell'] = "nix-shell --run xonsh"
 
     # ZOXIDE
     execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
+
+    # PLATFORM SPECIFIC STUFF
+    if   platform.node() == 'nixos-wsl':
+      $SSH_AUTH_SOCK = '/mnt/c/cygwin64/tmp/.ssh-pageant-michal'
+    elif platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
+      $SSH_AUTH_SOCK = '/run/user/1000/gnupg/S.gpg-agent.ssh'
 
     # GENERAL STUFF TO RUN
     gpg-connect-agent updatestartuptty /bye > /dev/null
