@@ -53,7 +53,7 @@
 
   home.file.".xonshrc".text = ''
     # INIT AND ENVVARS
-    import os
+    import os,platform
     xontrib load bashisms abbrevs direnv gitinfo
 
     source-bash /etc/profile
@@ -68,7 +68,7 @@
     $THEFUCK_REQUIRE_CONFIRMATION = True
 
     # SPECIFIC XONSH CONFIG
-    $COMPLETIONS_CONFIRM = True
+    $COMPLETIONS_CONFIRM          = True
 
     # ALIASES
     aliases['cat']                = "bat"
@@ -80,7 +80,7 @@
     aliases['ls']                 = "lsd -A"
     
     # ABBREVS
-    abbrevs['nix-shell'] = "nix-shell --run xonsh"
+    abbrevs['nix-shell']          = "nix-shell --run xonsh"
 
     # ZOXIDE
     execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
@@ -88,6 +88,7 @@
     # PLATFORM SPECIFIC STUFF
     if   platform.node() == 'nixos-wsl':
       $SSH_AUTH_SOCK = '/mnt/c/cygwin64/tmp/.ssh-pageant-michal'
+      $
     elif platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
       $SSH_AUTH_SOCK = '/run/user/1000/gnupg/S.gpg-agent.ssh'
 
