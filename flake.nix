@@ -32,6 +32,7 @@
           ./station/qmk.nix
 
           ./common/dev.nix
+          ./common/gui-apps.nix
           ./common/kde.nix
           ./common/media.nix
           ./common/nix.nix
@@ -54,6 +55,7 @@
           ./laptop/hardware.nix
 
           ./common/dev.nix
+          ./common/gui-apps.nix
           ./common/kde.nix
           ./common/media.nix
           ./common/nix.nix
@@ -111,6 +113,7 @@
 
           ./station/qmk.nix
 
+          ./common/gui-apps.nix
           ./common/nix.nix
           ./common/yubikey.nix
 
