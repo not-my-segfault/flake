@@ -24,7 +24,7 @@ in
     description = "Michal";
     shell = xonsh_with_plugins;
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "video" "disco" ]; # hahahahahaha avd
+    extraGroups = [ "wheel" "users" "audio" "video" "disco" ]; # hahahahahaha avd
   };
 
   security.sudo = { extraConfig = "Defaults pwfeedback"; };
