@@ -25,6 +25,7 @@ in
     shell = xonsh_with_plugins;
     isNormalUser = true;
     extraGroups = [ "wheel" "users" "audio" "video" "disco" ]; # hahahahahaha avd
+    uid = 1000;
   };
 
   security.sudo = { extraConfig = "Defaults pwfeedback"; };
