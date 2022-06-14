@@ -86,11 +86,7 @@
     execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 
     # PLATFORM SPECIFIC STUFF
-    if   platform.node() == 'nixos-wsl':
-      ssh-agent > /tmp/ssh-agent-xonsh
-      source-bash /tmp/ssh-agent-xonsh
-      $SSH_AUTH_SOCK = '/mnt/c/cygwin64/tmp/.ssh-pageant-michal'
-    elif platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
+    if platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
       $SSH_AUTH_SOCK = '/run/user/1000/gnupg/S.gpg-agent.ssh'
 
     # GENERAL STUFF TO RUN
