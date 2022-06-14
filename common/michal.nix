@@ -74,7 +74,7 @@
     aliases['cat']                = "bat"
     aliases['cd']                 = "z"
     aliases['clear']              = "env clear && pfetch"
-    aliases['crs']                = "distrobox-enter --name crystal"
+    aliases['crs']                = "distrobox-enter --name crystal -- xonsh"
     aliases['find']               = "fd"
     aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -1)))
     aliases['ls']                 = "lsd -A"
