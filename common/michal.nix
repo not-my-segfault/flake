@@ -87,6 +87,8 @@
 
     # PLATFORM SPECIFIC STUFF
     if   platform.node() == 'nixos-wsl':
+      ssh-agent > /tmp/ssh-agent-xonsh
+      source-bash /tmp/ssh-agent-xonsh
       $SSH_AUTH_SOCK = '/mnt/c/cygwin64/tmp/.ssh-pageant-michal'
     elif platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
       $SSH_AUTH_SOCK = '/run/user/1000/gnupg/S.gpg-agent.ssh'
