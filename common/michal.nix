@@ -8,9 +8,6 @@
     enable = true;
     userName = "Michal";
     userEmail = "michal@tar.black";
-    signing = {
-      signByDefault = false;
-    };
   };
 
   services.gpg-agent = {
