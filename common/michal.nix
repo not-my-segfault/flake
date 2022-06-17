@@ -9,8 +9,7 @@
     userName = "Michal";
     userEmail = "michal@tar.black";
     signing = {
-      key = "A6A1A4DCB22279B9";
-      signByDefault = true;
+      signByDefault = false;
     };
   };
 
