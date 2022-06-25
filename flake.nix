@@ -94,7 +94,7 @@
             wsl.defaultUser = "michal";
             wsl.startMenuLaunchers = true;
             wsl.interop = {
-              register = false;
+              register = true;
               includePath = false;
             };
           }
