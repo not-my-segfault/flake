@@ -74,7 +74,7 @@
     if platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
       gpg-connect-agent updatestartuptty /bye > /dev/null
 
-    if platform.node() == 'windows-station' || platform.node() = 'nixos-wsl':
+    if platform.node() == 'windows-station' || platform.node() == 'nixos-wsl':
       source-bash ~/.wsl-yubikey
 
     # GENERAL STUFF TO RUN
