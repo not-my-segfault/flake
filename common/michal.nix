@@ -63,7 +63,7 @@
     aliases['find']               = "fd"
     aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -1)))
     aliases['ls']                 = "lsd -A"
-    
+
     # ABBREVS
     abbrevs['nix-shell']          = "nix-shell --run xonsh"
 
@@ -72,13 +72,12 @@
 
     # PLATFORM SPECIFIC STUFF
     if platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
-      $SSH_AUTH_SOCK = '/run/user/1000/gnupg/S.gpg-agent.ssh'
-      
+      gpg-connect-agent updatestartuptty /bye > /dev/null
+
     if platform.node() == 'windows-station' || platform.node() = 'nixos-wsl':
       source-bash ~/.wsl-yubikey
 
     # GENERAL STUFF TO RUN
-    gpg-connect-agent updatestartuptty /bye > /dev/null
     clear
   '';
   
@@ -94,7 +93,7 @@
       fi
       unset wsl2_ssh_pageant_bin
     fi
-    
+
     export GPG_AGENT_SOCK="$HOME/.gnupg/S.gpg-agent"
     if ! ss -a | grep -q "$GPG_AGENT_SOCK"; then
       rm -rf "$GPG_AGENT_SOCK"
@@ -124,7 +123,7 @@
     thefuck
     xonsh
     zoxide
-    hx
+    helix
   ];
 
   home.stateVersion = "22.05";
