@@ -43,14 +43,13 @@
 
     source-bash /etc/profile
 
-    $BOTTOM_TOOLBAR               = '{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}'
-    $EDITOR                       = 'hx'
+    $BOTTOM_TOOLBAR               = "{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}"
     $GPG_TTY                      = $(tty)
-    $PAGER                        = 'less'
-    $PF_INFO                      = 'ascii title os host kernel uptime memory palette'
-    $PROMPT                       = '{BOLD_GREEN}{short_cwd}{RESET}> '
+    $PF_INFO                      = "ascii title os host kernel uptime memory palette"
+    $PROMPT                       = "{BOLD_GREEN}{short_cwd}{RESET}> "
     $DIRENV_LOG_FORMAT            = ""
     $THEFUCK_REQUIRE_CONFIRMATION = True
+    export $EDITOR                = "hx"
 
     # SPECIFIC XONSH CONFIG
     $COMPLETIONS_CONFIRM          = True
