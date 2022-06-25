@@ -49,7 +49,7 @@
     $PROMPT                       = "{BOLD_GREEN}{short_cwd}{RESET}> "
     $DIRENV_LOG_FORMAT            = ""
     $THEFUCK_REQUIRE_CONFIRMATION = True
-    export $EDITOR                = "hx"
+    $EDITOR                       = "hx"
 
     # SPECIFIC XONSH CONFIG
     $COMPLETIONS_CONFIRM          = True
@@ -62,6 +62,9 @@
     aliases['find']               = "fd"
     aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -1)))
     aliases['ls']                 = "lsd -A"
+    aliases['vi']                 = "hx"
+    aliases['vim']                = "hx"
+    aliases['nvim']               = "hx"
 
     # ABBREVS
     abbrevs['nix-shell']          = "nix-shell --run xonsh"
