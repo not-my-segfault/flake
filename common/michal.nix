@@ -31,17 +31,6 @@
     };
   };
 
-  programs.vim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [ copilot-vim rainbow vim-gitgutter ];
-    settings = {
-      number = true;
-      expandtab = true;
-      shiftwidth = 2;
-      tabstop = 2;
-    };
-  };
-
   programs.direnv = {
     enable = true;
     nix-direnv = { enable = true; };
@@ -55,7 +44,7 @@
     source-bash /etc/profile
 
     $BOTTOM_TOOLBAR               = '{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}'
-    $EDITOR                       = 'vim'
+    $EDITOR                       = 'hx'
     $GPG_TTY                      = $(tty)
     $PAGER                        = 'less'
     $PF_INFO                      = 'ascii title os host kernel uptime memory palette'
@@ -84,10 +73,39 @@
     # PLATFORM SPECIFIC STUFF
     if platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
       $SSH_AUTH_SOCK = '/run/user/1000/gnupg/S.gpg-agent.ssh'
+      
+    if platform.node() == 'windows-station' || platform.node() = 'nixos-wsl':
+      source-bash ~/.wsl-yubikey
 
     # GENERAL STUFF TO RUN
     gpg-connect-agent updatestartuptty /bye > /dev/null
     clear
+  '';
+  
+  home.file.".wsl-yubikey".text = ''
+    export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
+    if ! ss -a | grep -q "$SSH_AUTH_SOCK"; then
+      rm -f "$SSH_AUTH_SOCK"
+      wsl2_ssh_pageant_bin="/mnt/c/Users/micha/wsl2-ssh-pageant.exe"
+      if test -x "$wsl2_ssh_pageant_bin"; then
+        (setsid nohup socat UNIX-LISTEN:"$SSH_AUTH_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin" >/dev/null 2>&1 &)
+      else
+        echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
+      fi
+      unset wsl2_ssh_pageant_bin
+    fi
+    
+    export GPG_AGENT_SOCK="$HOME/.gnupg/S.gpg-agent"
+    if ! ss -a | grep -q "$GPG_AGENT_SOCK"; then
+      rm -rf "$GPG_AGENT_SOCK"
+      wsl2_ssh_pageant_bin="/mnt/c/Users/micha/wsl2-ssh-pageant.exe"
+      if test -x "$wsl2_ssh_pageant_bin"; then
+        (setsid nohup socat UNIX-LISTEN:"$GPG_AGENT_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin --gpg S.gpg-agent" >/dev/null 2>&1 &)
+      else
+        echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
+      fi
+      unset wsl2_ssh_pageant_bin
+    fi
   '';
 
   xdg.configFile."sway/config".source = ./sway.conf;
@@ -101,12 +119,12 @@
     neofetch
     onefetch
     w3m
-    nodejs-slim
     lsd
     pfetch
     thefuck
     xonsh
     zoxide
+    hx
   ];
 
   home.stateVersion = "22.05";
