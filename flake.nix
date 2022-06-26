@@ -79,6 +79,7 @@
           ./common/dev.nix
           ./common/nix.nix
           ./common/personal.nix
+          ./common/yubikey.nix
 
           home-manager.nixosModules.home-manager
           {
