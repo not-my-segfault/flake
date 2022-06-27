@@ -2,7 +2,7 @@
 
 let
   secretPath = "/secret";
-  gitlabPort = 8080;
+  gitlabPort = 80;
   gitlabHost = "git.nixos.local";
   httpsEnabled = false;
   adminEmail = "michal@tar.black";
@@ -19,35 +19,23 @@ in {
       jwsFile = secretPath;
       dbFile = secretPath;
     };
-#   extraGitlabRb = ''
-#     nginx['enable'] = false
-#     puma['port'] = ${toString (gitlabPort + 1)}
-#     gitlab_workhorse['auth_backend'] = "http://localhost:${
-#       toString (gitlabPort + 1)
-#     }"
-#     external_url = "http://127.0.0.1:${toString gitlabPort}"
-#   '';
     initialRootEmail = adminEmail;
     initialRootPasswordFile = secretPath;
   };
 
-#  services.nginx = {
-#   enable = true;
-#   user = "gitlab";
-#   recommendedProxySettings = true;
-#   virtualHosts."${gitlabHost}" = {
-#     locations."/" = {
-#       #       proxyPass = "http://unix:/var/gitlab/state/tmp/sockets/gitlab.socket";
-#       proxyPass = "http://127.0.0.1:${toString gitlabPort}$request_uri";
-#     };
-#   };
-# };
-
-# environment.systemPackages = with pkgs; [
-#   nodePackages.npm
-#   nodePackages.yarn
-#   nodejs
-# ];
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendeDGzipSettings = true;
+    recommendedOptimisation = true;
+    virtualHosts."${gitlabHost}" = {
+      enableACME = httpsEnabled;
+      forceSSL = httpsEnabled;
+      locations."/" = {
+        proxyPass = "http://unix:/run/gitlab/gitlab-workhorse.socket";
+      };
+    };
+  };
 
   networking = {
     firewall.allowedTCPPorts = [ 22 gitlabPort ];
