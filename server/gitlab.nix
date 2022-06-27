@@ -26,7 +26,7 @@ in {
   services.nginx = {
     enable = true;
     recommendedProxySettings = true;
-    recommendeDGzipSettings = true;
+    recommendedGzipSettings = true;
     recommendedOptimisation = true;
     virtualHosts."${gitlabHost}" = {
       enableACME = httpsEnabled;
