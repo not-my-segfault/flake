@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  secretPath = "/mnt/e/secret";
+  secretPath = "/secret";
   gitlabPort = 8080;
   gitlabHost = "git.nixos.local";
   httpsEnabled = false;
