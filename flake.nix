@@ -105,21 +105,20 @@
       nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-#         (_: { nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ]; })
-
           ./rpi/base.nix
           ./rpi/hardware.nix
 #         ./rpi/media.nix
           ./rpi/personal.nix
 #         ./rpi/sway.nix
-          ./rpi/dev.nix
 
 #         ./server/mc-server.nix
+          ./server/gitlab.nix
 
           ./station/qmk.nix
 
-          ./common/gui-apps.nix
+          ./common/personal.nix
           ./common/nix.nix
+          ./common/dev.nix
           ./common/yubikey.nix
 
           home-manager.nixosModules.home-manager
