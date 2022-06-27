@@ -96,16 +96,10 @@
       unset wsl2_ssh_pageant_bin
     fi
 
-    export GPG_AGENT_SOCK="$HOME/.gnupg/S.gpg-agent"
+    export GPG_AGENT_SOCK="/run/user/$UID/gnupg/S.gpg-agent"
     if ! ss -a | grep -q "$GPG_AGENT_SOCK"; then
       rm -rf "$GPG_AGENT_SOCK"
-      wsl2_ssh_pageant_bin="/mnt/c/Users/micha/wsl2-ssh-pageant.exe"
-      if test -x "$wsl2_ssh_pageant_bin"; then
-        (setsid nohup socat UNIX-LISTEN:"$GPG_AGENT_SOCK,fork" EXEC:"$wsl2_ssh_pageant_bin --gpg S.gpg-agent" >/dev/null 2>&1 &)
-      else
-        echo >&2 "WARNING: $wsl2_ssh_pageant_bin is not executable."
-      fi
-      unset wsl2_ssh_pageant_bin
+        socat UNIX-LISTEN:"/run/user/$UID/gnupg/S.gpg-agent",fork EXEC:'/mnt/c/Users/micha/npiperelay.exe -ei -ep -s -a "C:/Users/micha/AppData/Roaming/gnupg/S.gpg-agent"',nofork > /dev/null 2>&1 &
     fi
   '';
 
