@@ -21,17 +21,17 @@
   };
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/120536aa-b2c9-45d6-ba2b-d9cb8bd81cc7";
+    device = "/dev/disk/by-label/ROOT";
     fsType = "btrfs";
   };
 
   fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-uuid/0E82-4BB9";
+    device = "/dev/disk/by-label/EFI";
     fsType = "vfat";
   };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/ce0ced3c-0b0b-41a2-b3cf-e81b3484d20f"; }];
+    [{ device = "/dev/disk/by-label/SWAP"; }];
 
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
