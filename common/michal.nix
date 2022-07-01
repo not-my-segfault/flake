@@ -1,15 +1,108 @@
 { pkgs, ... }:
 
+let
+  editor = "hx";
+in
 {
 
   nixpkgs.config = { allowUnfree = true; };
 
-  programs.git = {
-    enable = true;
-    userName = "Michal";
-    userEmail = "michal@tar.black";
-  };
+  programs = {
+    fish = {
+      enable = true;
+      functions = {
+        fish_greeting = "";    
+      };
+      shellAliases = {
+        cat = "bat";
+        cd = "z";
+        clear = "env clear && pfetch";
+        crs = "distrobox-enter --name crystal -- fish";
+        find = "fd";
+        ls = "lsd -A";
+        vi = "${editor}";
+        vim = "${editor}";
+        nvim = "${editor}";
+        pfetch = "PF_INFO=\"ascii title os host kernel uptime memory palette\" env pfetch";
+      };
+      shellAbbrs = {
+        nix-shell = "nix-shell --run fish";
+      };
+      shellInit = ''
+        set DIRENV_LOG_FORMAT ""
+        set EDITOR "hx"
+        
+        set -e fish_greeting
+        set -x HOSTNAME (hostname)
+        
+        if [ "$HOSTNAME" = "windows-station" ] || [ "$HOSTNAME" = "nixos-wsl" ]
+          bass source ~/.wsl-yubikey
+        end
+      '';
+      interactiveShellInit = "clear";
+      plugins = [
+        {
+          name = "tide";
+          src = pkgs.fetchFromGitHub {
+            owner = "IlanCosman";
+            repo = "tide";
+            rev = "d715de0a2ab4e33f202d30f5c6bd8da9cfc6c310";
+            sha256 = "6ys1SEfcWO0cRRNawrpnUU9tPJVVZ0E6RcPmrE9qG5g=";
+          };
+        }
+        
+        {
+          name = "bass";
+          src = pkgs.fetchFromGitHub {
+            owner = "edc";
+            repo = "bass";
+            rev = "2fd3d2157d5271ca3575b13daec975ca4c10577a";
+            sha256 = "fl4/Pgtkojk5AE52wpGDnuLajQxHoVqyphE90IIPYFU=";
+          };
+        }
+        
+        {
+          name = "sponge";
+          src = pkgs.fetchFromGitHub {
+            owner = "andreiborisov";
+            repo = "sponge";
+            rev = "dcfcc9089939f48b25b861a9254a39de8e9f33a0";
+            sha256 = "+GGfFC/hH7A8n9Wwojt5PW96fSzvRhThnZ3pLeWEqds=";
+          };
+        }
+      ];
+    };
+      
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+      
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  
+    git = {
+      enable = true;
+      userName = "Michal";
+      userEmail = "michal@tar.black";
+    };
 
+    gpg = {
+      enable = true;
+      scdaemonSettings = {
+        card-timeout = "5";
+        disable-ccid = true;
+        reader-port = "Yubico Yubikey";
+      };
+      settings = {
+        trust-model = "tofu+pgp";
+        default-key = "A6A1A4DCB22279B9";
+      };
+    };
+  };
+  
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
@@ -17,71 +110,6 @@
     sshKeys = [ "6D3C4AD0688B00F9283C6AF6A0AD05622E61D340" ];
     pinentryFlavor = "qt";
   };
-
-  programs.gpg = {
-    enable = true;
-    scdaemonSettings = {
-      card-timeout = "5";
-      disable-ccid = true;
-      reader-port = "Yubico Yubikey";
-    };
-    settings = {
-      trust-model = "tofu+pgp";
-      default-key = "A6A1A4DCB22279B9";
-    };
-  };
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv = { enable = true; };
-  };
-
-  home.file.".xonshrc".text = ''
-    # INIT AND ENVVARS
-    import os,platform
-    xontrib load bashisms abbrevs direnv gitinfo
-
-    source-bash /etc/profile
-
-    $BOTTOM_TOOLBAR               = "{INVERT_WHITE} {localtime} | {user}@{hostname} | {cwd} {RESET}"
-    $GPG_TTY                      = $(tty)
-    $PF_INFO                      = "ascii title os host kernel uptime memory palette"
-    $PROMPT                       = "{BOLD_GREEN}{short_cwd}{RESET}> "
-    $DIRENV_LOG_FORMAT            = ""
-    $THEFUCK_REQUIRE_CONFIRMATION = True
-    $EDITOR                       = "hx"
-
-    # SPECIFIC XONSH CONFIG
-    $COMPLETIONS_CONFIRM          = True
-
-    # ALIASES
-    aliases['cat']                = "bat"
-    aliases['cd']                 = "z"
-    aliases['clear']              = "env clear && pfetch"
-    aliases['crs']                = "distrobox-enter --name crystal -- xonsh"
-    aliases['find']               = "fd"
-    aliases['fuck']               = lambda args, stdin=None: execx($(thefuck $(history -1)))
-    aliases['ls']                 = "lsd -A"
-    aliases['vi']                 = "hx"
-    aliases['vim']                = "hx"
-    aliases['nvim']               = "hx"
-
-    # ABBREVS
-    abbrevs['nix-shell']          = "nix-shell --run xonsh"
-
-    # ZOXIDE
-    execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
-
-    # PLATFORM SPECIFIC STUFF
-    if platform.node() == 'nixos-station' || platform.node() == 'nixos-laptop':
-      gpg-connect-agent updatestartuptty /bye > /dev/null
-
-    if platform.node() == 'windows-station' || platform.node() == 'nixos-wsl':
-      source-bash ~/.wsl-yubikey
-
-    # GENERAL STUFF TO RUN
-    clear
-  '';
   
   home.file.".wsl-yubikey".text = ''
     export SSH_AUTH_SOCK="$HOME/.ssh/agent.sock"
@@ -114,10 +142,9 @@
     neofetch
     onefetch
     w3m
+    python
     lsd
     pfetch
-    thefuck
-    xonsh
     zoxide
     helix
   ];
