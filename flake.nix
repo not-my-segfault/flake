@@ -12,7 +12,7 @@
     nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, ... }@inputs:
 
   let
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
