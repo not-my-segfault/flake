@@ -28,14 +28,16 @@
       }
     );
     
-    homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ 
-        ./michal/shell.nix 
-        ./michal/dev.nix 
-        ./michal/base.nix
-      ];
-    };
+    homeConfigurations.michal = forAllSystems (system:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [ 
+          ./michal/shell.nix 
+          ./michal/dev.nix 
+          ./michal/base.nix
+        ];
+      };
+    );
       
     nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
