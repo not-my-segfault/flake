@@ -17,10 +17,8 @@
   outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, flake-utils, ... }@inputs:
 
   {
-    homeConfigurations.michal = flake-utils.lib.eachDefaultSystem(system:
-    let pkgs = nixpkgs.legacyPackages.${system}; 
-    in home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+    homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [ 
           ./michal/shell.nix 
           ./michal/dev.nix 
