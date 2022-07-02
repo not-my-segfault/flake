@@ -12,18 +12,29 @@
 
   outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, ... }@inputs:
 
+    flake-utils.lib.eachDefaultSystem(system:
     let
-      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
-      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
-    in {
-      devShell = forAllSystems (system:
-        let pkgs = nixpkgsFor.${system};
-        in pkgs.mkShell {
-          buildInputs = with pkgs; [ nix-linter statix nixfmt ];
-        });
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [ nix-linter statix nixfmt ];
+      };
 
-      inherit (hm-configs) homeConfigurations;
+      homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [ 
+          ./michal/shell.nix 
+          ./michal/dev.nix 
+          ./michal/base.nix
+          {
+            home = {
+              username = "michal";
+              homeDirectory = "/home/michal";
+            };
+          }
+        ];
+      };
       
       nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
