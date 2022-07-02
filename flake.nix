@@ -16,13 +16,19 @@
 
   outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, flake-utils, ... }@inputs:
 
+  let
+    supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
+    forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
+  in
   {
-    devShell = flake-utils.lib.eachDefaultSystem (system:
-    let pkgs = nixpkgs.legacyPackages.${system};
-    in pkgs.mkShell {
-      buildInputs = with pkgs; [ nix-linter statix nixfmt ];
-    });
-  
+    devShell = forAllSystems (system:
+      let pkgs = nixpkgsFor.${system};
+      in pkgs.mkShell {
+        buildInputs = with pkgs; [ nix-linter statix nixfmt ];
+      }
+    );
+    
     homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ 
