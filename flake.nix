@@ -3,26 +3,21 @@
   description = "Michal's NixOS Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     hm-configs.url = "github:ihatethefrench/hm-flake";
   };
 
   outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, ... }@inputs:
 
-    flake-utils.lib.eachDefaultSystem(system:
-    let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      devShells.${system}.default = pkgs.mkShell {
-        buildInputs = with pkgs; [ nix-linter statix nixfmt ];
-      };
-
-      homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+  {
+    homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [ 
           ./michal/shell.nix 
           ./michal/dev.nix 
