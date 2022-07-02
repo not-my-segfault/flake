@@ -16,8 +16,10 @@
   outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, ... }@inputs:
 
   {
-    homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    homeConfigurations.michal = flake-utils.lib.eachDefaultSystem(system:
+    let pkgs = nixpkgs.legacyPackages.${system}; 
+    in home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
           modules = [ 
           ./michal/shell.nix 
           ./michal/dev.nix 
@@ -29,7 +31,7 @@
             };
           }
         ];
-      };
+      });
       
       nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
