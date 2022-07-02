@@ -12,8 +12,12 @@
 
   security.sudo = { extraConfig = "Defaults pwfeedback"; };
 
-  environment.pathsToLink = [
-    "/share/fish"
-  ];
-  
+  environment = {
+    pathsToLink = [
+      "/share/fish"
+    ];
+    systemPackages = with pkgs; [
+      home-manager
+    ]
+  };
 }
