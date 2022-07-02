@@ -23,7 +23,7 @@
     };
     
     homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      inherit pkgs;
       modules = [ 
         ./michal/shell.nix 
         ./michal/dev.nix 
@@ -38,8 +38,8 @@
         ./station/gaming.nix
         ./station/hardware.nix
         ./station/music.nix
-        ./station/qmk.nix
-
+        
+        ./common/qmk.nix
         ./common/dev.nix
         ./common/gui-apps.nix
         ./common/kde.nix
@@ -101,8 +101,7 @@
 #       ./server/mc-server.nix
         ./server/gitlab.nix
 
-        ./station/qmk.nix
-
+        ./common/qmk.nix
         ./common/personal.nix
         ./common/nix.nix
         ./common/dev.nix
