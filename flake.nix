@@ -11,10 +11,9 @@
     };
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     hm-configs.url = "github:ihatethefrench/hm-flake";
-    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, flake-utils, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, ... }@inputs:
 
   let
     supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
