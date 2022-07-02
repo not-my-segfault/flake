@@ -11,9 +11,10 @@
     };
     nixos-wsl.url = "github:nix-community/nixos-wsl";
     hm-configs.url = "github:ihatethefrench/hm-flake";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, flake-utils, ... }@inputs:
 
   {
     homeConfigurations.michal = flake-utils.lib.eachDefaultSystem(system:
