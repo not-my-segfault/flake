@@ -12,10 +12,6 @@
   environment.systemPackages = with pkgs; [
     curl
     distrobox
-    htop
-    okteta
-    qbittorrent
-    virt-manager
   ];
 
 }
