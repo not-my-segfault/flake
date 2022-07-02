@@ -17,6 +17,12 @@
   outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, flake-utils, ... }@inputs:
 
   {
+    devShell = flake-utils.lib.eachDefaultSystem (system:
+    let pkgs = nixpkgs.legacyPackages.${system};
+    in pkgs.mkShell {
+      buildInputs = with pkgs; [ nix-linter statix nixfmt ];
+    });
+  
     homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ 
