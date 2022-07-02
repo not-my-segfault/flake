@@ -30,7 +30,7 @@
             };
           }
         ];
-      });
+      };
       
       nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
