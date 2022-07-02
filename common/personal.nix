@@ -18,6 +18,6 @@
     ];
     systemPackages = with pkgs; [
       home-manager
-    ]
+    ];
   };
 }
