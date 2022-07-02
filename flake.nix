@@ -7,9 +7,10 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     nixos-wsl.url = "github:nix-community/nixos-wsl";
+    hm-configs.url = "github:ihatethefrench/hm-flake";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, ... }@inputs:
+  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, hm-configs, ... }@inputs:
 
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
@@ -22,6 +23,8 @@
           buildInputs = with pkgs; [ nix-linter statix nixfmt ];
         });
 
+      inherit (hm-configs) homeConfigurations;
+      
       nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -39,12 +42,6 @@
           ./common/personal.nix
           ./common/yubikey.nix
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.michal = import ./common/michal.nix;
-          }
         ];
       };
 
@@ -62,12 +59,6 @@
           ./common/personal.nix
           ./common/yubikey.nix
 
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.michal = import ./common/michal.nix;
-          }
         ];
       };
 
@@ -80,13 +71,6 @@
           ./common/nix.nix
           ./common/personal.nix
           ./common/yubikey.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.michal = import ./common/michal.nix;
-          }
 
           nixos-wsl.nixosModules.wsl
           {
@@ -120,13 +104,6 @@
           ./common/nix.nix
           ./common/dev.nix
           ./common/yubikey.nix
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.michal = import ./common/michal.nix;
-          }
 
           nixos-hardware.nixosModules.raspberry-pi-4
         ];
