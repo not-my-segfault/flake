@@ -7,6 +7,6 @@
     username = "michal";
     homeDirectory = "/home/michal";
     packages = with pkgs; [ neofetch htop ncdu ];
-    stateVersion = "22.05";
+    stateVersion = "22.11";
   };
 }
