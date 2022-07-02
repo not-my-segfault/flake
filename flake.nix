@@ -36,7 +36,7 @@
           ./michal/dev.nix 
           ./michal/base.nix
         ];
-      };
+      }
     );
       
     nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
