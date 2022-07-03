@@ -11,6 +11,14 @@ in {
       enable = true;
       functions = { 
         fish_greeting = "";
+        pfetch = ''
+          set PF_INFO "ascii title os host kernel uptime memory palette"
+          if test -f /usr/bin/pfetch
+            /usr/bin/pfetch
+          else
+            env pfetch
+          end  
+        '';
       };
       shellAliases = {
         cat = "bat";
@@ -22,8 +30,6 @@ in {
         vi = "${editor.alias}";
         vim = "${editor.alias}";
         nvim = "${editor.alias}";
-        pfetch = ''
-          PF_INFO="ascii title os host kernel uptime memory palette" env pfetch'';
       };
       shellAbbrs = { nix-shell = "nix-shell --run fish"; };
       shellInit = ''
