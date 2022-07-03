@@ -29,11 +29,13 @@ in {
       shellInit = ''
         set DIRENV_LOG_FORMAT ""
         set EDITOR "${editor.alias}"
-
+        
         set -x HOSTNAME (hostname)
 
         if [ "$HOSTNAME" = "windows-station" ] || [ "$HOSTNAME" = "nixos-wsl" ]
           bass source ~/.wsl-yubikey
+        else
+          set SSH_AUTH_SOCK /run/user/1000/gnupg/S.gpg-agent.ssh
         end
       '';
       interactiveShellInit = "clear";

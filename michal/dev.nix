@@ -42,7 +42,7 @@
       enable = true;
       enableSshSupport = true;
       enableScDaemon = true;
-      sshKeys = [ "" ];
+      sshKeys = [ "6D3C4AD0688B00F9283C6AF6A0AD05622E61D340" ];
       pinentryFlavor = "qt";
     };
   };
