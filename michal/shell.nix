@@ -35,7 +35,7 @@ in {
       shellInit = ''
         set DIRENV_LOG_FORMAT ""
         set EDITOR "${editor.alias}"
-        
+
         set -x HOSTNAME (hostname)
 
         if [ "$HOSTNAME" = "windows-station" ] || [ "$HOSTNAME" = "nixos-wsl" ]
@@ -44,7 +44,11 @@ in {
           set SSH_AUTH_SOCK /run/user/1000/gnupg/S.gpg-agent.ssh
         end
       '';
-      interactiveShellInit = "clear";
+      interactiveShellInit = ''
+        thefuck --alias | source
+
+        clear
+      '';
       plugins = [
         {
           name = "tide";
@@ -75,6 +79,26 @@ in {
             sha256 = "+GGfFC/hH7A8n9Wwojt5PW96fSzvRhThnZ3pLeWEqds=";
           };
         }
+        
+        {
+          name = "fish-plugin-sudo";
+          src = pkgs.fetchFromGitHub {
+            owner = "eth-p";
+            repo = "fish-plugin-sudo";
+            rev = "e153fdea568cd370312f9c0809fac15fc7582bfd";
+            sha256 = "bTK34G+J6AOoYmhOIG0XNXV2SN/u789+epXMBN3lnu4=";    
+          };
+        }
+          
+        {
+          name = "puffer-fish";
+          src = pkgs.fetchFromGitHub {
+            owner = "nickeb96";
+            repo = "puffer-fish";
+            rev = "df333fff5130ef8bf153c9bafbf0661534f81d9c";
+            sha256 = "VtFrRzI476Hkutwwgkkc9hoiCma6Xyknm7xHeghrLxo=";
+          };
+        }
       ];
     };
 
@@ -97,6 +121,7 @@ in {
     lsd
     pfetch
     zoxide
+    thefuck
 
     editor.package
   ];
