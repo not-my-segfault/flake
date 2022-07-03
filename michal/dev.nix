@@ -6,6 +6,10 @@
       enable = true;
       userName = "Michal";
       userEmail = "michal@tar.black";
+      extraConfig = ''
+        [core]
+        editor = "flatpak run --file-forwarding re.sonny.Commit @@"    
+      '';
     };
 
     gpg = {
