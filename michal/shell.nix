@@ -30,6 +30,7 @@ in {
         vi = "${editor.alias}";
         vim = "${editor.alias}";
         nvim = "${editor.alias}";
+        ul = "ultralist";
       };
       shellAbbrs = { nix-shell = "nix-shell --run fish"; };
       shellInit = ''
