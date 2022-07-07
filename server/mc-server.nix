@@ -1,10 +1,9 @@
 { pkgs, ... }:
 
 let
-  fabric-mc = pkgs.callPackage ../derivations/fabric-mc.nix { };
+  # fabric-mc = pkgs.callPackage ../derivations/fabric-mc.nix { };
   forge-mc = pkgs.callPackage ../derivations/forge-mc.nix { };
 in {
-
   services.minecraft-server = {
     enable = true;
     declarative = true;

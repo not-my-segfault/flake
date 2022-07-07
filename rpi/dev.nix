@@ -20,11 +20,7 @@ let
   });
 in {
 
-  environment.systemPackages = with pkgs; [
-    curl
-    htop
-    onefetch
-  ];
+  environment.systemPackages = with pkgs; [ curl htop onefetch ];
 
   users.users.michal.shell = xonsh_with_plugins;
 

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 
 let
   secretPath = "/secret";
@@ -37,8 +37,6 @@ in {
     };
   };
 
-  networking = {
-    firewall.allowedTCPPorts = [ 22 gitlabPort ];
-  };
+  networking = { firewall.allowedTCPPorts = [ 22 gitlabPort ]; };
 
 }

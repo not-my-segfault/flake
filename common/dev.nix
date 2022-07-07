@@ -9,9 +9,6 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    curl
-    distrobox
-  ];
+  environment.systemPackages = with pkgs; [ curl distrobox ];
 
 }

@@ -1,7 +1,4 @@
-{ pkgs
-, stdenv
-, fetchurl 
-}:
+{ pkgs, stdenv, fetchurl }:
 
 let
   mcVersion = "1.12.2";
@@ -32,7 +29,7 @@ in stdenv.mkDerivation {
 
     mkdir -p $out/share/forge-mc
     cp -r ar/forge-${mcVersion}-${forgeVersion}/* $out/share/forge-mc/
-    
+
     install -Dm555 -t $out/bin minecraft-server
   '';
 

@@ -7,7 +7,7 @@
       userName = "Michal";
       userEmail = "michal@tar.black";
       extraConfig = {
-        core.editor = "flatpak run --file-forwarding re.sonny.Commit @@"; 
+        core.editor = "flatpak run --file-forwarding re.sonny.Commit @@";
         safe.directory = "*";
       };
     };

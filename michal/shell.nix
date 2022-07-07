@@ -9,7 +9,7 @@ in {
   programs = {
     fish = {
       enable = true;
-      functions = { 
+      functions = {
         fish_greeting = "";
         pfetch = ''
           set PF_INFO "ascii title os host kernel uptime memory palette"
@@ -79,17 +79,17 @@ in {
             sha256 = "+GGfFC/hH7A8n9Wwojt5PW96fSzvRhThnZ3pLeWEqds=";
           };
         }
-        
+
         {
           name = "fish-plugin-sudo";
           src = pkgs.fetchFromGitHub {
             owner = "eth-p";
             repo = "fish-plugin-sudo";
             rev = "e153fdea568cd370312f9c0809fac15fc7582bfd";
-            sha256 = "bTK34G+J6AOoYmhOIG0XNXV2SN/u789+epXMBN3lnu4=";    
+            sha256 = "bTK34G+J6AOoYmhOIG0XNXV2SN/u789+epXMBN3lnu4=";
           };
         }
-          
+
         {
           name = "puffer-fish";
           src = pkgs.fetchFromGitHub {
@@ -122,6 +122,7 @@ in {
     pfetch
     zoxide
     thefuck
+    ultralist
 
     editor.package
   ];

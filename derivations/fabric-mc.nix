@@ -1,8 +1,4 @@
-
-{ pkgs
-, stdenv
-, fetchurl
-}:
+{ stdenv, fetchurl }:
 
 let
   mcVersion = "1.18.2";
