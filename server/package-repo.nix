@@ -7,16 +7,22 @@ let
     rsyncKeys = [ 
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPEDRyDWDPwXX8VRUO0EjJuxsYrM+QUb+buj02DoAoLS builder@falcon"
     ];
-    internalPort = 8081;
+    listenUrl = "*";
+    listenPort = 8081;
   };
 in
 {
-  services.httpd = {
+  services.nginx = {
     enable = true;
     virtualHosts = {
       "${repo.url}" = {
-        listen = repo.internalPort;
-        documentRoot = repo.localPath;
+        listen = [
+          {
+            addr = repo.listenUrl;
+            port = repo.listenPort;
+          }
+        ];
+        root = repo.localPath;
       };
     };
   };
