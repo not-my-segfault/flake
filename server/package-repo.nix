@@ -33,4 +33,8 @@ in
   users.users.wwwrun = {
     openssh.authorizedKeys.keys = repo.rsyncKeys;
   };
+    
+  networking.firewall = {
+    allowedTCPPorts = [ repo.listenPort ];  
+  };
 }
