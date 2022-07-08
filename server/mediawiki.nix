@@ -46,13 +46,13 @@ in
         url = "https://extdist.wmflabs.org/dist/extensions/BlueSpiceFoundation-REL1_35-ab8191a.tar.gz";
         sha256 = "hqj4jwQIkAdQ9S+q6/h4G1YvdbtLLa/MpSsk03fzerw=";
       };
-      #extJSBase = pkgs.fetchzip {
-      #  url = "https://extdist.wmflabs.org/dist/extensions/ExtJSBase-REL1_38-eeb8042.tar.gz";
-      #  sha256 = "";
-      #};
+      extJSBase = pkgs.fetchzip {
+        url = "https://extdist.wmflabs.org/dist/extensions/ExtJSBase-REL1_38-eeb8042.tar.gz";
+        sha256 = "";
+      };
       ooJSPlus = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/OOJSPlus-REL1_35-2167b81.tar.gz";
-        sha256 = "";
+        sha256 = "0GCGucjopHugMdI8T7rtkxigiWxyTNUwgPPSC9OsDQo=";
       };
     };
     skins = {
