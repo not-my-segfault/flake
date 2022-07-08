@@ -14,7 +14,7 @@ let
     packageWithLogo = pkgs.buildEnv {
       name = "mediawiki-custom";
       paths = [ pkgs.mediawiki wiki.logo ];
-      inherit (pkgs.mediawiki) version;
+      inherit (pkgs.mediawiki) pname version;
     };
   };
 in
