@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 let
   repo = {
@@ -30,8 +30,11 @@ in
     };
   };
     
-  users.users.wwwrun = {
+  users.users.reposync = {
+    shell = pkgs.bash;
+    isNormalUser = true;
     openssh.authorizedKeys.keys = repo.rsyncKeys;
+    packages = with pkgs; [ rsync ];
   };
     
   networking.firewall = {
