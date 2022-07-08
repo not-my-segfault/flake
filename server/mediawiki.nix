@@ -7,8 +7,8 @@ let
     admin = "michal@tar.black";
     passwdPath = "/secret";
     useSsl = false;
-    listenAddress = "10.0.0.16";
-    port = 8080;
+    listenAddress = "*";
+    port = 80;
     color = "#a900ff";
   };
 in
