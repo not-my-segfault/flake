@@ -48,6 +48,10 @@ in
         url = "https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/refs/tags/v1.17.7.zip";
         sha256 = "RNPWCJ8UtmNjch6moBLAPQyRRZHZ3q1W4DosavcyRK4=";
       };
+      crystal-branding = pkgs.fetchzip {
+        url = "https://github.com/crystal-linux/branding/archive/3caca02cc722395d26acdce44e92ac76ba9795cc.zip";
+        sha256 = "";
+      };
     };
   };
   
