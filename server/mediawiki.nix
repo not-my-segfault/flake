@@ -44,13 +44,13 @@ in
     extensions = {
       blueSpice = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/BlueSpiceFoundation-REL1_35-ab8191a.tar.gz";
-        sha256 = "RNPWCJ8UtmNjch6moBLAPQyRRZHZ3q1W4DosavcyRK4=";
+        sha256 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
       };
     };
     skins = {
       citizen = pkgs.fetchzip {
         url = "https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/refs/tags/v1.17.7.zip";
-        sha256 = "854d7a49b87533d149a83d53975f6e3b3c9847868bdb43e5d6f10ef0bc6e3c43";
+        sha256 = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB=";
       };
     };
   };
