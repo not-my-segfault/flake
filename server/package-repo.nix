@@ -23,6 +23,9 @@ in
           }
         ];
         root = repo.localPath;
+        extraConfig = ''
+          autoindex on;
+        '';
       };
     };
   };
