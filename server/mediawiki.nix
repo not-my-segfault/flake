@@ -10,17 +10,12 @@ let
     listenAddress = "*";
     port = 80;
     color = "#a900ff";
-    logo = ./logo.png;
-    packageWithLogo = pkgs.buildEnv {
-      name = "mediawiki-custom-${pkgs.mediawiki.version}";
-      paths = [ pkgs.mediawiki wiki.logo ];
-    };
+    logoUrl = "";
   };
 in
 {
   services.mediawiki = {
     enable = true;
-    package = wiki.packageWithLogo;
     name = wiki.name;
     virtualHost = {
       hostName = wiki.domain;
@@ -53,10 +48,6 @@ in
       citizen = pkgs.fetchzip {
         url = "https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/refs/tags/v1.17.7.zip";
         sha256 = "RNPWCJ8UtmNjch6moBLAPQyRRZHZ3q1W4DosavcyRK4=";
-      };
-      crystal-branding = pkgs.fetchzip {
-        url = "https://github.com/crystal-linux/branding/archive/3caca02cc722395d26acdce44e92ac76ba9795cc.zip";
-        sha256 = "RawFmLXtL8NLzg7mNDT5bQiqaWjlWk+OmpUlgGod+Hc=";
       };
     };
   };
