@@ -91,7 +91,7 @@
           ./common/personal.nix
 
           ./server/mediawiki.nix
-        # ./server/github-runner.nix
+          ./server/package-repo.nix
 
           ./common/personal.nix
           ./common/nix.nix
