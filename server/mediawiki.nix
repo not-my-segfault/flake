@@ -35,6 +35,7 @@ in
       # Set theme
       wfLoadSkin( 'citizen' );
       $wgDefaultSkin = 'citizen';
+      $wgLogo = '/logo.png';
       
       # Theme customisation
       $wgCitizenThemeColor = '${wiki.color}';
