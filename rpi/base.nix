@@ -41,7 +41,7 @@
 
   time.timeZone = "Europe/London";
 
-  environment.systemPackages = with pkgs; [ libraspberrypi vim ];
+  environment.systemPackages = with pkgs; [ libraspberrypi vim git helix htop ];
 
   system.stateVersion = "22.05";
 

@@ -7,9 +7,10 @@ let
     admin = "michal@tar.black";
     passwdPath = "/secret";
     useSsl = false;
-    listenAddress = "10.0.0.16";
-    port = 8080;
+    listenAddress = "*";
+    port = 80;
     color = "#a900ff";
+    logoPath = ./logo.png;
   };
 in
 {
@@ -26,6 +27,14 @@ in
           ssl = wiki.useSsl;
         }
       ];
+      locations = {
+        "/logo.png" = {
+          alias = wiki.logoPath;
+        };
+        "/favicon.ico" = {
+          alias = wiki.logoPath;
+        };
+      };
     };
     passwordFile = wiki.passwdPath;
     extraConfig = ''
@@ -35,13 +44,19 @@ in
       # Set theme
       wfLoadSkin( 'citizen' );
       $wgDefaultSkin = 'citizen';
+      $wgLogo = 'logo.png';
       
       # Theme customisation
       $wgCitizenThemeColor = '${wiki.color}';
       $wgCitizenManifestThemeColor = '${wiki.color}';
       $wgCitizenManifestBackgroundColor = '${wiki.color}';
     '';
-    extensions = {};
+    extensions = {
+      visualEditor = pkgs.fetchzip {
+        url = "https://extdist.wmflabs.org/dist/extensions/VisualEditor-REL1_37-4c4ca57.tar.gz";
+        sha256 = "/BH/q+lrLkCZAaOeiL7HZvZaUKP9VA4p0S8mt7XcFXE=";
+      };
+    };
     skins = {
       citizen = pkgs.fetchzip {
         url = "https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/refs/tags/v1.17.7.zip";
