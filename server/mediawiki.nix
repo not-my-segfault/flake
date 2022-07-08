@@ -28,8 +28,8 @@ in
         }
       ];
       locations = {
-        "/logo.png" = {
-          proxyPass = "https://getcryst.al/site/assets/other/logo.png";
+        "/crystal_custom" = {
+          alias = "https://getcryst.al/site/assets/other";
         };
       };
     };
@@ -41,7 +41,7 @@ in
       # Set theme
       wfLoadSkin( 'citizen' );
       $wgDefaultSkin = 'citizen';
-      $wgLogo = 'logo.png';
+      $wgLogo = 'crystal_custom/logo.png';
       
       # Theme customisation
       $wgCitizenThemeColor = '${wiki.color}';
