@@ -31,6 +31,9 @@ in
         "/logo.png" = {
           alias = wiki.logoPath;
         };
+        "/favicon.ico" = {
+          alias = wiki.logoPath;
+        };
       };
     };
     passwordFile = wiki.passwdPath;
