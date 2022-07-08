@@ -10,7 +10,7 @@ let
     listenAddress = "*";
     port = 80;
     color = "#a900ff";
-    logoPath = /logo.png;
+    logoPath = ./logo.png;
   };
 in
 {
