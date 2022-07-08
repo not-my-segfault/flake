@@ -44,7 +44,7 @@ in
     extensions = {
       blueSpice = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/BlueSpiceFoundation-REL1_35-ab8191a.tar.gz";
-        sha256 = "5b72bc79ca949646192c8e5fceb399ce9163bb58f4f690560571623442aced4a";
+        sha256 = "RNPWCJ8UtmNjch6moBLAPQyRRZHZ3q1W4DosavcyRK4=";
       };
     };
     skins = {
