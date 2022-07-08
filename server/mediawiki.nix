@@ -41,20 +41,7 @@ in
       $wgCitizenManifestThemeColor = '${wiki.color}';
       $wgCitizenManifestBackgroundColor = '${wiki.color}';
     '';
-    extensions = {
-      blueSpice = pkgs.fetchzip {
-        url = "https://extdist.wmflabs.org/dist/extensions/BlueSpiceFoundation-REL1_35-ab8191a.tar.gz";
-        sha256 = "hqj4jwQIkAdQ9S+q6/h4G1YvdbtLLa/MpSsk03fzerw=";
-      };
-      extJSBase = pkgs.fetchzip {
-        url = "https://extdist.wmflabs.org/dist/extensions/ExtJSBase-REL1_38-eeb8042.tar.gz";
-        sha256 = "eILhPfV0RNQeWn671D1ocMmbPPBeskkNWhogwG8VxQo=";
-      };
-      ooJSPlus = pkgs.fetchzip {
-        url = "https://extdist.wmflabs.org/dist/extensions/OOJSPlus-REL1_35-2167b81.tar.gz";
-        sha256 = "0GCGucjopHugMdI8T7rtkxigiWxyTNUwgPPSC9OsDQo=";
-      };
-    };
+    extensions = {};
     skins = {
       citizen = pkgs.fetchzip {
         url = "https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/refs/tags/v1.17.7.zip";
