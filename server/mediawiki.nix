@@ -20,9 +20,11 @@ in
       hostName = wiki.domain;
       adminAddr = wiki.admin;
       listen = {
-        ip = wiki.listenAddress;
-        port = wiki.port;
-        ssl = wiki.useSsl;
+        {
+          ip = wiki.listenAddress;
+          port = wiki.port;
+          ssl = wiki.useSsl;
+        }
       };
     };
     passwordFile = wiki.passwdPath;
@@ -34,8 +36,6 @@ in
       wfLoadSkin( 'citizen' );
       $wgDefaultSkin = 'citizen';
       
-      # Set plugins
-        
       # Theme customisation
       $wgCitizenThemeColor = '${wiki.color}';
       $wgCitizenManifestThemeColor = '${wiki.color}';
@@ -54,7 +54,6 @@ in
       };
     };
   };
-
   services.automysqlbackup = {
     enable = true;
     config = {
@@ -63,9 +62,7 @@ in
       mail_address = "null@tar.black";
     };    
   };
-    
   
-    
   environment.systemPackages = with pkgs; [
     imagemagickBig  
   ];
