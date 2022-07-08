@@ -50,7 +50,7 @@ in
       };
       crystal-branding = pkgs.fetchzip {
         url = "https://github.com/crystal-linux/branding/archive/3caca02cc722395d26acdce44e92ac76ba9795cc.zip";
-        sha256 = "";
+        sha256 = "RawFmLXtL8NLzg7mNDT5bQiqaWjlWk+OmpUlgGod+Hc=";
       };
     };
   };
