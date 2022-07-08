@@ -12,7 +12,7 @@ let
     color = "#a900ff";
     logo = ./logo.png;
     packageWithLogo = pkgs.buildEnv {
-      name = "mediawiki-with-logo";
+      name = "mediawiki-env";
       paths = [ pkgs.mediawiki wiki.logo ];
     };
   };
