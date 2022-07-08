@@ -54,7 +54,7 @@ in
     extensions = {
       visualEditor = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/VisualEditor-REL1_37-4c4ca57.tar.gz";
-        sha256 = "";
+        sha256 = "/BH/q+lrLkCZAaOeiL7HZvZaUKP9VA4p0S8mt7XcFXE=";
       };
     };
     skins = {
