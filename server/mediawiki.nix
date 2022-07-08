@@ -53,8 +53,8 @@ in
     '';
     extensions = {
       visualEditor = pkgs.fetchzip {
-        url = "https://extdist.wmflabs.org/dist/extensions/VisualEditor-REL1_38-942e773.tar.gz";
-        sha256 = "JgCu6tv7sk0LFrb3UMNS+56EuIjd1/mmvngNAzOvGA8=";
+        url = "https://extdist.wmflabs.org/dist/extensions/VisualEditor-REL1_37-4c4ca57.tar.gz";
+        sha256 = "";
       };
     };
     skins = {
