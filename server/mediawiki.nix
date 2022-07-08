@@ -27,6 +27,11 @@ in
           ssl = wiki.useSsl;
         }
       ];
+      locations = {
+        "/logo.png" = {
+          proxyPass = "https://getcryst.al/site/assets/other/logo.png";
+        };
+      };
     };
     passwordFile = wiki.passwdPath;
     extraConfig = ''
@@ -36,7 +41,7 @@ in
       # Set theme
       wfLoadSkin( 'citizen' );
       $wgDefaultSkin = 'citizen';
-      $wgLogo = '/logo.png';
+      $wgLogo = 'logo.png';
       
       # Theme customisation
       $wgCitizenThemeColor = '${wiki.color}';
