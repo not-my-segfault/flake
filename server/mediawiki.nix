@@ -54,6 +54,7 @@ in
       };
     };
   };
+  
   services.automysqlbackup = {
     enable = true;
     config = {
@@ -61,6 +62,10 @@ in
       mailcontent = "log";
       mail_address = "null@tar.black";
     };    
+  };
+  
+  networking.firewall = {
+    allowedTCPPorts = [ wiki.port ];
   };
   
   environment.systemPackages = with pkgs; [
