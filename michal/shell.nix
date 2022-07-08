@@ -31,6 +31,7 @@ in {
         vim = "${editor.alias}";
         nvim = "${editor.alias}";
         ul = "ultralist";
+        f = "fuck";
       };
       shellAbbrs = { nix-shell = "nix-shell --run fish"; };
       shellInit = ''
@@ -49,6 +50,7 @@ in {
         thefuck --alias | source
 
         clear
+        ul list
       '';
       plugins = [
         {
