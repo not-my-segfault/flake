@@ -87,17 +87,13 @@
         modules = [
           ./rpi/base.nix
           ./rpi/hardware.nix
-          #       ./rpi/media.nix
-          ./rpi/personal.nix
-          #       ./rpi/sway.nix
 
-          #       ./server/mc-server.nix
-          ./server/gitlab.nix
+          ./common/personal.nix
 
-          ./common/qmk.nix
+          ./server/mediawiki.nix
+
           ./common/personal.nix
           ./common/nix.nix
-          ./common/dev.nix
           ./common/yubikey.nix
 
           nixos-hardware.nixosModules.raspberry-pi-4
