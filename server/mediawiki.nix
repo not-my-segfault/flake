@@ -48,7 +48,7 @@ in
       };
       extJSBase = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/ExtJSBase-REL1_38-eeb8042.tar.gz";
-        sha256 = "";
+        sha256 = "eILhPfV0RNQeWn671D1ocMmbPPBeskkNWhogwG8VxQo=";
       };
       ooJSPlus = pkgs.fetchzip {
         url = "https://extdist.wmflabs.org/dist/extensions/OOJSPlus-REL1_35-2167b81.tar.gz";
