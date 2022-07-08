@@ -10,7 +10,7 @@ let
     listenAddress = "*";
     port = 80;
     color = "#a900ff";
-    logoUrl = "";
+    logoPath = /logo.png;
   };
 in
 {
@@ -28,8 +28,8 @@ in
         }
       ];
       locations = {
-        "/crystal_custom" = {
-          proxyPass = "https://getcryst.al/site/assets/other";
+        "/logo.png" = {
+          alias = wiki.logoPath;
         };
       };
     };
@@ -41,7 +41,7 @@ in
       # Set theme
       wfLoadSkin( 'citizen' );
       $wgDefaultSkin = 'citizen';
-      $wgLogo = 'crystal_custom/logo.png';
+      $wgLogo = 'logo.png';
       
       # Theme customisation
       $wgCitizenThemeColor = '${wiki.color}';
