@@ -29,7 +29,7 @@ in
       ];
       locations = {
         "/crystal_custom" = {
-          alias = "https://getcryst.al/site/assets/other";
+          proxyPass = "https://getcryst.al/site/assets/other";
         };
       };
     };
