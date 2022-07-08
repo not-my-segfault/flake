@@ -12,9 +12,8 @@ let
     color = "#a900ff";
     logo = ./logo.png;
     packageWithLogo = pkgs.buildEnv {
-      name = "mediawiki-custom";
+      name = "mediawiki-custom-${pkgs.mediawiki.version}";
       paths = [ pkgs.mediawiki wiki.logo ];
-      inherit (pkgs.mediawiki) pname version;
     };
   };
 in
