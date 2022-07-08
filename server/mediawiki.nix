@@ -10,11 +10,17 @@ let
     listenAddress = "*";
     port = 80;
     color = "#a900ff";
+    logo = ./logo.png;
+    packageWithLogo = pkgs.buildEnv {
+      name = "mediawiki-with-logo";
+      paths = [ pkgs.mediawiki wiki.logo ];
+    };
   };
 in
 {
   services.mediawiki = {
     enable = true;
+    package = wiki.packageWithLogo;
     name = wiki.name;
     virtualHost = {
       hostName = wiki.domain;
