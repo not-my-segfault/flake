@@ -19,13 +19,13 @@ in
     virtualHost = {
       hostName = wiki.domain;
       adminAddr = wiki.admin;
-      listen = {
+      listen = [
         {
           ip = wiki.listenAddress;
           port = wiki.port;
           ssl = wiki.useSsl;
         }
-      };
+      ];
     };
     passwordFile = wiki.passwdPath;
     extraConfig = ''
