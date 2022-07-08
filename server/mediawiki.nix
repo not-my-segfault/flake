@@ -51,7 +51,12 @@ in
       $wgCitizenManifestThemeColor = '${wiki.color}';
       $wgCitizenManifestBackgroundColor = '${wiki.color}';
     '';
-    extensions = {};
+    extensions = {
+      visualEditor = pkgs.fetchzip {
+        url = "https://extdist.wmflabs.org/dist/extensions/VisualEditor-REL1_38-942e773.tar.gz";
+        sha256 = "";
+      };
+    };
     skins = {
       citizen = pkgs.fetchzip {
         url = "https://github.com/StarCitizenTools/mediawiki-skins-Citizen/archive/refs/tags/v1.17.7.zip";
