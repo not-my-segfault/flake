@@ -23,7 +23,7 @@ in {
       shellAliases = {
         cat = "bat";
         cd = "z";
-        clear = "env clear && pfetch";
+        clear = "env clear && pfetch && ultralist list";
         crs = "distrobox-enter --name crystal -- fish";
         find = "fd";
         ls = "lsd -A";
@@ -50,7 +50,6 @@ in {
         thefuck --alias | source
 
         clear
-        ul list
       '';
       plugins = [
         {
