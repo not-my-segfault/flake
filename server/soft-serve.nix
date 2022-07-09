@@ -38,8 +38,7 @@ let
             admin: ${if admin then "true" else "false"}
             ${if publicKeys  != [] then "public-keys:  ${lib.concatStringsSep "\n      - " ([""] ++ publicKeys)}"  else ""}
             ${if collabRepos != [] then "collab-repos: ${lib.concatStringsSep "\n      - " ([""] ++ collabRepos)}" else ""}
-      
-  '';
+      '';
   userList =
     lib.forEach server.users (user: 
       userConstruct user
