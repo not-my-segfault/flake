@@ -11,10 +11,20 @@ let
       {
         name = "michal";
         admin = true;
-        publicKeys = [ 
-          "" 
+        publicKeys = [
+          "key1"
         ];
         collabRepos = [];
+      }
+
+      {
+        name = "swift";
+        publicKeys = [
+          "key2"
+        ];
+        collabRepos = [
+          "test-repo"
+        ];
       }
     ];
   };
@@ -25,7 +35,7 @@ let
     collabRepos
   } : ''
           - name: "${name}"
-            admin: ${toString admin}
+            admin: ${if admin then "true" else "false"}
             ${if publicKeys  != [] then "public-keys:  ${lib.concatStringsSep "\n      - " publicKeys}"  else ""}
             ${if collabRepos != [] then "collab-repos: ${lib.concatStringsSep "\n      - " collabRepos}" else ""}
       
