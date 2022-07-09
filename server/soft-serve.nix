@@ -2,7 +2,7 @@
 
 let
   server = {
-    name = "tar.black SoftServe Git Forge";
+    name = "SoftServe Git Forge";
     host = "soft";
     port = 23231;
     anonAccess = "read-write";
@@ -12,32 +12,26 @@ let
         name = "michal";
         admin = true;
         publicKeys = [
-          "key1"
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAwgkEpWmDGQiOK+N5MxXdBYDIIr6DNn52UAKqY0dnxyYw1aATyChe1etqeWN/e6DH6g9yc3BvG6lV21pCVmqc3CyrxfsgQnCBU8ziUi8xk9dmdbSyZoEnETY2DGX3oWmYOlNQsbSa8IBa4iwbW5lLpdvowaka9TEmTGsNafkx8fPMhK4cdD0RsAsCg1pFCskHOxBZzrgV5HL2aMLy2Ys+4DqWOPXIY3pXsVjzdi3YVW59oXaNNd+NC8pqM3HiR2X4WS+/F5s1yIJE8G7TeC7mSqa68K6pfPAjzyHe/4ZzcyYkuOEe4KSxsPwNGGCXoYEaCMb2v7jgxWWZxedvBC1psSiFj01AAZBWl2fwSIOa88LwGtdtA/LOz5aOdHmxtZ8NwwGtx+mWz31eWUEMUEc72XMn7XdP++yvdlVsZg+bat2NryjO8+iCpz8opfqZ9r5f4EDkXFPcFMMwjUAFUUk0hv008vwhuudEwcuqgFzyt23aWOQFxTVAtD4OHYvKYCF1JkVYuZnpzDY2I2zUZ+749kYyUm+aWae+fE54FvyX0yO3M08GNizUn0X578HhICgZJlo09ewy9dIKQtsoVZPFGyr+jDqJJkJFbCkLwwxUIiijz16olrFD3UpscF+oiEVzkJ+9ClXvcbArqu1KtZ+2TrjFhk1o23ukmxZrjSEKkQ== cardno:16 179 196"
         ];
-        collabRepos = [];
       }
-
       {
         name = "swift";
-        publicKeys = [
-          "key2"
-        ];
-        collabRepos = [
-          "test-repo"
-        ];
+        publicKeys = [ "swiftkey" ];
+        collabRepos = [ "test-repo" ];
       }
     ];
   };
   userConstruct = {
     name,
     admin ? false,
-    publicKeys,
-    collabRepos
+    publicKeys ? [],
+    collabRepos ? []
   } : ''
           - name: "${name}"
             admin: ${if admin then "true" else "false"}
-            ${if publicKeys  != [] then "public-keys:  ${lib.concatStringsSep "\n      - " ([""] ++ publicKeys)}"  else ""}
-            ${if collabRepos != [] then "collab-repos: ${lib.concatStringsSep "\n      - " ([""] ++ collabRepos)}" else ""}
+            ${if publicKeys  != [] then "public-keys:  ${lib.concatStringsSep "\n    - " ([""] ++ publicKeys)}"  else ""}
+            ${if collabRepos != [] then "collab-repos: ${lib.concatStringsSep "\n    - " ([""] ++ collabRepos)}" else ""}
       '';
   userList =
     lib.forEach server.users (user: 
