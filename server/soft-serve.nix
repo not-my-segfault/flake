@@ -25,7 +25,7 @@ let
     collabRepos
   } : ''
           - name: "${name}"
-            admin: ${admin}
+            admin: ${toString admin}
             ${if publicKeys  != [] then "public-keys:  ${lib.intersperse "\n      - " publicKeys}"  else ""}
             ${if collabRepos != [] then "collab-repos: ${lib.intersperse "\n      - " collabRepos}" else ""}
   '';
@@ -39,11 +39,11 @@ in
     # Basic config
     name: "${server.name}"
     host: "${server.host}"
-    port:  ${server.port}
+    port:  ${toString server.port}
     
     # Security
     anon-access:   "${server.anonAccess}"
-    allow-keyless:  ${server.allowKeyless}
+    allow-keyless:  ${toString server.allowKeyless}
 
     # User setup
     users: 
