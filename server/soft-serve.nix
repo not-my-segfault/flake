@@ -32,7 +32,7 @@ let
   '';
   userList =
     lib.forEach server.users (user: 
-      userConstruct { user.name, user.admin, user.publicKeys, user.collabRepos }
+      userConstruct user
     );
 in
 {
