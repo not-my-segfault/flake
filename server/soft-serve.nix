@@ -29,6 +29,8 @@ let
             ${if publicKeys  != [] then "public-keys:  ${lib.intersperse "\n      - " publicKeys}"  else ""}
             ${if collabRepos != [] then "collab-repos: ${lib.intersperse "\n      - " collabRepos}" else ""}
   '';
+  userList =
+    lib.forEach server.users (lib.intersperse "\n" (user: userConstruct user.name user.admin user.publicKeys user.collabRepos));
 in
 {
   environment.systemPackages = with pkgs; [
@@ -47,6 +49,6 @@ in
 
     # User setup
     users: 
-    ${lib.concatStrings lib.forEach server.users (lib.intersperse "\n" (user: userConstruct user.name user.admin user.publicKeys user.collabRepos))}
+    ${lib.concatStrings userList}
   '';
 }
