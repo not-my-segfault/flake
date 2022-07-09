@@ -42,6 +42,10 @@ in
   environment.systemPackages = with pkgs; [
     soft-serve  
   ];
+    
+  networking.firewall = {
+    allowedTCPPorts = [ server.port ];
+  };
   
   environment.etc."soft-serve.yml".text = ''
     # Basic config
