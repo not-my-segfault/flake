@@ -30,7 +30,7 @@ let
             ${if collabRepos != [] then "collab-repos: ${lib.intersperse "\n      - " collabRepos}" else ""}
   '';
   userList =
-    lib.forEach server.users (lib.intersperse "\n" (user: userConstruct user.name user.admin user.publicKeys user.collabRepos));
+    lib.forEach server.users (user: (lib.intersperse "\n" (userConstruct user.name user.admin user.publicKeys user.collabRepos)));
 in
 {
   environment.systemPackages = with pkgs; [
