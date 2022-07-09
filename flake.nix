@@ -92,6 +92,7 @@
 
           ./server/mediawiki.nix
           ./server/package-repo.nix
+          ./server/soft-serve.nix
 
           ./common/personal.nix
           ./common/nix.nix
