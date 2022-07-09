@@ -47,6 +47,6 @@ in
 
     # User setup
     users: 
-    ${concatStrings (lib.forEach server.users (lib.intersperse "\n" (user: userConstruct user.name user.admin user.publicKeys user.collabRepos)))}
+    ${lib.concatStrings (lib.forEach server.users (lib.intersperse "\n" (user: userConstruct user.name user.admin user.publicKeys user.collabRepos)))}
   '';
 }
