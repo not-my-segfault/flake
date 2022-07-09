@@ -26,8 +26,8 @@ let
   } : ''
           - name: "${name}"
             admin: ${toString admin}
-            ${if publicKeys  != [] then "public-keys:  ${lib.intersperse "\n      - " publicKeys}"  else ""}
-            ${if collabRepos != [] then "collab-repos: ${lib.intersperse "\n      - " collabRepos}" else ""}
+            ${if publicKeys  != [] then "public-keys:  ${lib.concatStringsSep "\n      - " publicKeys}"  else ""}
+            ${if collabRepos != [] then "collab-repos: ${lib.concatStringsSep "\n      - " collabRepos}" else ""}
       
   '';
   userList =
