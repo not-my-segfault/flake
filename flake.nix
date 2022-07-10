@@ -89,6 +89,7 @@
           defaultModules "station"
           ++ modules.nixos.desktops.kde
           ++ modules.nixos.common
+          ++ modules.nixos.gaming
           ++ modules.nixos.dev;
       };
 
