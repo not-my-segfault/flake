@@ -6,6 +6,10 @@
       enable = true;
       userName = "Michal";
       userEmail = "michal@tar.black";
+      signing = {
+        key = "A6A1A4DCB22279B9";
+        signByDefault = true;
+      };
       extraConfig = {
         core.editor = "flatpak run --file-forwarding re.sonny.Commit @@";
         safe.directory = "*";
