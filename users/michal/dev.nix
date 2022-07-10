@@ -55,6 +55,11 @@
 
   home = {
     file.".wsl-yubikey".source = ./configs/.wsl-yubikey;
-    packages = with pkgs; [onefetch w3m];
+    packages = with pkgs; [
+      onefetch
+      w3m
+      gitui
+      # sshs
+    ];
   };
 }
