@@ -20,38 +20,44 @@
     utils,
     ...
   } @ inputs: let
-    modules = rec {
-      homeCommon = [./users/michal/shell.nix ./users/michal/base.nix];
-      nixosCommon = [
-        ./common/nix.nix
-        ./common/personal.nix
-        ./common/yubikey.nix
-      ];
-      dev = [
-        ./common/dev/distrobox.nix
-        ./common/dev/qmk.nix
-      ];
-      desktops = {
-        common = [
-          ./common/desktop/media.nix
-          ./common/desktop/gui-apps.nix
-        ];
-        kde =
-          [
-            ./common/desktop/kde.nix
-          ]
-          ++ modules.desktops.common;
-        sway =
-          [
-            ./common/desktop/sway.nix
-          ]
-          ++ modules.desktops.common;
+    modules = {
+      home = {
+        common = [./users/michal/shell.nix ./users/michal/base.nix];
+        dev = [./users/michal/dev.nix];
       };
-      server = [
-        ./devops/github-runner.nix
-        ./devops/mediawiki.nix
-        ./devops/soft-serve.nix
-      ];
+      nixos = {
+        common = [
+          ./common/nix.nix
+          ./common/personal.nix
+          ./common/yubikey.nix
+        ];
+        dev = [
+          ./common/dev/distrobox.nix
+          ./common/dev/qmk.nix
+        ];
+        desktops = {
+          common = [
+            ./common/desktop/media.nix
+            ./common/desktop/gui-apps.nix
+          ];
+          kde =
+            [
+              ./common/desktop/kde.nix
+            ]
+            ++ modules.nixos.desktops.common;
+          sway =
+            [
+              ./common/desktop/sway.nix
+            ]
+            ++ modules.nixos.desktops.common;
+        };
+        gaming = [./common/desktop/gaming.nix];
+        server = [
+          ./devops/github-runner.nix
+          ./devops/mediawiki.nix
+          ./devops/soft-serve.nix
+        ];
+      };
     };
 
     pkgs = {
@@ -67,12 +73,12 @@
     homeConfigurations = {
       "michal" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs.x86;
-        modules = modules.homeCommon ++ [./users/michal/dev.nix];
+        modules = modules.home.common ++ modules.home.dev;
       };
 
       "michal@nixos-rpi" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs.arm;
-        modules = modules.homeCommon;
+        modules = modules.home.common;
       };
     };
 
@@ -81,17 +87,17 @@
         system = "x86_64-linux";
         modules =
           defaultModules "station"
-          ++ modules.desktops.kde
-          ++ modules.nixosCommon
-          ++ modules.dev;
+          ++ modules.nixos.desktops.kde
+          ++ modules.nixos.common
+          ++ modules.nixos.dev;
       };
 
       "nixos-laptop" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
           defaultModules "laptop"
-          ++ modules.desktops.kde
-          ++ modules.nixosCommon;
+          ++ modules.nixos.desktops.kde
+          ++ modules.nixos.common;
       };
 
       "nixos-rpi" = nixpkgs.lib.nixosSystem {
@@ -99,8 +105,8 @@
         modules =
           defaultModules "rpi"
           ++ [nixos-hardware.nixosModules.raspberry-pi-4]
-          ++ modules.nixosCommon
-          ++ modules.server;
+          ++ modules.nixos.common
+          ++ modules.nixos.server;
       };
     };
 
