@@ -1,5 +1,4 @@
 {
-
   description = "Michal's NixOS Flake";
 
   inputs = {
@@ -9,97 +8,115 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
     nixos-wsl.url = "github:nix-community/nixos-wsl";
   };
 
-  outputs = { nixpkgs, nixos-hardware, home-manager, nixos-wsl, ... }@inputs:
+  outputs = {
+    nixpkgs,
+    nixos-hardware,
+    home-manager,
+    nixos-wsl,
+    utils,
+    ...
+  } @ inputs: let
+    modules = rec {
+      homeCommon = [./users/michal/shell.nix ./users/michal/base.nix];
+      nixosCommon = [
+        ./common/nix.nix
+        ./common/personal.nix
+        ./common/yubikey.nix
+      ];
+      dev = [
+        ./common/dev/distrobox.nix
+        ./common/dev/qmk.nix
+      ];
+      desktops = {
+        common = [
+          ./common/desktop/media.nix
+          ./common/desktop/gui-apps.nix
+        ];
+        kde =
+          [
+            ./common/desktop/kde.nix
+          ]
+          ++ modules.desktops.common;
+        sway =
+          [
+            ./common/desktop/sway.nix
+          ]
+          ++ modules.desktops.common;
+      };
+      server = [
+        ./devops/github-runner.nix
+        ./devops/mediawiki.nix
+        ./devops/soft-serve.nix
+      ];
+    };
 
-    let pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    in {
-      devShells.x86_64-linux.default =
-        pkgs.mkShell { buildInputs = with pkgs; [ nix-linter statix nixfmt ]; };
+    pkgs = {
+      x86 = nixpkgs.legacyPackages.x86_64-linux;
+      arm = nixpkgs.legacyPackages.aarch64-linux;
+    };
 
-      homeConfigurations.michal = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./michal/shell.nix ./michal/dev.nix ./michal/base.nix ];
+    defaultModules = x:
+      nixpkgs.lib.forEach ["base.nix" "hardware.nix"] (
+        mod: (./. + "/devices" + ("/" + x) + ("/" + mod))
+      );
+  in {
+    homeConfigurations = {
+      "michal" = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs.x86;
+        modules = modules.homeCommon ++ [./users/michal/dev.nix];
       };
 
-      nixosConfigurations."nixos-station" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./station/base.nix
-          ./station/gaming.nix
-          ./station/hardware.nix
-          ./station/music.nix
-
-          ./common/qmk.nix
-          ./common/dev.nix
-          ./common/gui-apps.nix
-          ./common/kde.nix
-          ./common/media.nix
-          ./common/nix.nix
-          ./common/personal.nix
-          ./common/yubikey.nix
-        ];
-      };
-
-      nixosConfigurations."nixos-laptop" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./laptop/base.nix
-          ./laptop/hardware.nix
-
-          ./common/dev.nix
-          ./common/gui-apps.nix
-          ./common/kde.nix
-          ./common/media.nix
-          ./common/nix.nix
-          ./common/personal.nix
-          ./common/yubikey.nix
-        ];
-      };
-
-      nixosConfigurations."nixos-wsl" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./wsl/base.nix
-          ./common/dev.nix
-          ./common/nix.nix
-          ./common/personal.nix
-          ./common/yubikey.nix
-
-          nixos-wsl.nixosModules.wsl
-          {
-            wsl.enable = true;
-            wsl.automountPath = "/mnt";
-            wsl.defaultUser = "michal";
-            wsl.startMenuLaunchers = true;
-            wsl.interop = {
-              register = true;
-              includePath = false;
-            };
-          }
-        ];
-      };
-
-      nixosConfigurations."nixos-rpi" = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          ./rpi/base.nix
-          ./rpi/hardware.nix
-
-          ./common/personal.nix
-
-          ./server/mediawiki.nix
-          ./server/package-repo.nix
-          ./server/soft-serve.nix
-
-          ./common/personal.nix
-          ./common/nix.nix
-          ./common/yubikey.nix
-
-          nixos-hardware.nixosModules.raspberry-pi-4
-        ];
+      "michal@nixos-rpi" = home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgs.arm;
+        modules = modules.homeCommon;
       };
     };
+
+    nixosConfigurations = {
+      "nixos-station" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules =
+          defaultModules "station"
+          ++ modules.desktops.kde
+          ++ modules.nixosCommon
+          ++ modules.dev;
+      };
+
+      "nixos-laptop" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules =
+          defaultModules "laptop"
+          ++ modules.desktops.kde
+          ++ modules.nixosCommon;
+      };
+
+      "nixos-rpi" = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules =
+          defaultModules "rpi"
+          ++ [nixos-hardware.nixosModules.raspberry-pi-4]
+          ++ modules.nixosCommon
+          ++ modules.server;
+      };
+    };
+
+    devShells = {
+      x86_64-linux.default = pkgs.x86.mkShell {
+        buildInputs = with pkgs.x86; [statix];
+      };
+
+      aarch64-linux.default = pkgs.arm.mkShell {
+        buildInputs = with pkgs.arm; [statix];
+      };
+    };
+
+    formatter = {
+      x86_64-linux = pkgs.x86.alejandra;
+      aarch64-linux = pkgs.arm.alejanda;
+    };
+  };
 }

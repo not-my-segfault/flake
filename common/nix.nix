@@ -1,8 +1,7 @@
 {
-
   nixpkgs.config.allowUnfree = true;
   nix = {
-    settings = { auto-optimise-store = true; };
+    settings = {auto-optimise-store = true;};
     gc = {
       automatic = true;
       dates = "daily";
@@ -18,5 +17,4 @@
     flake = "https://git.tar.black/michal/nixos-flake?rev=main";
     dates = "daily";
   };
-
 }

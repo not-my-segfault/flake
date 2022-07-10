@@ -1,9 +1,6 @@
-{ pkgs, ... }:
-
-{
-
+{pkgs, ...}: {
   services = {
-    udev.packages = with pkgs; [ yubikey-personalization ];
+    udev.packages = with pkgs; [yubikey-personalization];
     pcscd.enable = true;
   };
 
@@ -21,5 +18,4 @@
     yubikey-manager
     yubikey-manager-qt
   ];
-
 }
