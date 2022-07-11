@@ -36,6 +36,8 @@ in {
         set EDITOR "${editor.alias}"
 
         set -x HOSTNAME (hostname)
+          
+        set SSH_AUTH_SOCK (gpgconf --list-dirs | grep ssh | cut -d: -f2)
       '';
       interactiveShellInit = ''
         thefuck --alias | source
