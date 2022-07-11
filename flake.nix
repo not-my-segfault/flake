@@ -60,9 +60,11 @@
       };
     };
 
+    supportedSystems = ["x86_64-linux" "aarch64-linux"];
+
     pkgs = {
-      x86 = nixpkgs.legacyPackages.x86_64-linux;
-      arm = nixpkgs.legacyPackages.aarch64-linux;
+      x86_64-linux = nixpkgs.legacyPackages.x86_64-linux;
+      aarch64-linux = nixpkgs.legacyPackages.aarch64-linux;
     };
 
     defaultModules = x:
@@ -72,12 +74,12 @@
   in {
     homeConfigurations = {
       "michal" = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs.x86;
+        pkgs = pkgs.x86_64-linux;
         modules = modules.home.common ++ modules.home.dev;
       };
 
       "michal@nixos-rpi" = home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgs.arm;
+        pkgs = pkgs.aarch64-linux;
         modules = modules.home.common;
       };
     };
@@ -112,18 +114,13 @@
     };
 
     devShells = {
-      x86_64-linux.default = pkgs.x86.mkShell {
-        buildInputs = with pkgs.x86; [statix];
-      };
-
-      aarch64-linux.default = pkgs.arm.mkShell {
-        buildInputs = with pkgs.arm; [statix];
-      };
+      x86_64-linux.default = pkgs.x86_64-linux.mkShell {buildInputs = with pkgs.x86_64-linux; [statix];};
+      aarch64-linux.default = pkgs.aarch64.mkShell {buildInputs = with pkgs.x86_64-linux; [statix];};
     };
 
     formatter = {
-      x86_64-linux = pkgs.x86.alejandra;
-      aarch64-linux = pkgs.arm.alejanda;
+      x86_64-linux = pkgs.x86_64-linux.alejandra;
+      aarch64-linux = pkgs.aarch64.alejanda;
     };
   };
 }

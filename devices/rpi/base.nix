@@ -16,7 +16,7 @@
   };
 
   networking = {
-    hostName = "nixos-rpi";
+    hostName = "new-ewok";
     networkmanager.enable = true;
     useDHCP = false;
     interfaces = {
