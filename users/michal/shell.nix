@@ -23,7 +23,6 @@ in {
         cd = "z";
         clear = "env clear && pfetch && ultralist list";
         find = "fd";
-        ls = "lsd -A";
         vi = "${editor.alias}";
         vim = "${editor.alias}";
         nvim = "${editor.alias}";
@@ -36,7 +35,7 @@ in {
         set EDITOR "${editor.alias}"
 
         set -x HOSTNAME (hostname)
-          
+
         set SSH_AUTH_SOCK (gpgconf --list-dirs | grep ssh | cut -d: -f2)
       '';
       interactiveShellInit = ''
@@ -95,10 +94,21 @@ in {
         }
       ];
     };
-
     zoxide = {
       enable = true;
       enableFishIntegration = true;
+    };
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    lsd = {
+      enable = true;
+      enableAliases = true;
+    };
+    tmux = {
+      enable = true;
+      shell = "fish";
     };
   };
 
