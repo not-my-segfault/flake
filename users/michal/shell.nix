@@ -22,7 +22,6 @@ in {
         cat = "bat";
         cd = "z";
         clear = "env clear && pfetch && ultralist list";
-        crs = "distrobox-enter --name crystal -- fish";
         find = "fd";
         ls = "lsd -A";
         vi = "${editor.alias}";
@@ -37,16 +36,9 @@ in {
         set EDITOR "${editor.alias}"
 
         set -x HOSTNAME (hostname)
-
-        if [ "$HOSTNAME" = "windows-station" ] || [ "$HOSTNAME" = "nixos-wsl" ]
-          bass source ~/.wsl-yubikey
-        else
-          set SSH_AUTH_SOCK /run/user/1000/gnupg/S.gpg-agent.ssh
-        end
       '';
       interactiveShellInit = ''
         thefuck --alias | source
-
         clear
       '';
       plugins = [
@@ -105,11 +97,6 @@ in {
     zoxide = {
       enable = true;
       enableFishIntegration = true;
-    };
-
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
     };
   };
 

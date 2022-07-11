@@ -27,19 +27,28 @@
       };
     };
     
-    fish.functions = {
-      __onefetch_on_pwd_change = {
-        body = "__onefetch_on_pwd_change --on-variable PWD";
-        onEvent = ''
-          if test -d ./.git
-            if test -e ./logo.png
-              onefetch --image logo.png
-            else
-              onefetch
+    fish = {
+      functions = {
+        __onefetch_on_pwd_change = {
+          body = "__onefetch_on_pwd_change --on-variable PWD";
+          onEvent = ''
+            if test -d ./.git
+              if test -e ./logo.png
+                onefetch --image logo.png
+              else
+                onefetch
+              end
             end
-          end
-        '';
+          '';
+        };
       };
+      shellAliases = {
+        crs = "distrobox-enter --name crystal -- fish";
+      };
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
   };
 
