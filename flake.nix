@@ -1,5 +1,5 @@
 {
-  description = "Michal's NixOS Flake";
+  description = "Michal's Nix Flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -115,12 +115,12 @@
 
     devShells = {
       x86_64-linux.default = pkgs.x86_64-linux.mkShell {buildInputs = with pkgs.x86_64-linux; [statix];};
-      aarch64-linux.default = pkgs.aarch64.mkShell {buildInputs = with pkgs.x86_64-linux; [statix];};
+      aarch64-linux.default = pkgs.aarch64-linux.mkShell {buildInputs = with pkgs.x86_64-linux; [statix];};
     };
 
     formatter = {
       x86_64-linux = pkgs.x86_64-linux.alejandra;
-      aarch64-linux = pkgs.aarch64.alejanda;
+      aarch64-linux = pkgs.aarch64-linux.alejanda;
     };
   };
 }
