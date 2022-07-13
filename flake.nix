@@ -62,9 +62,9 @@
 
     supportedSystems = ["x86_64-linux" "aarch64-linux"];
 
-    pkgs = {
-      x86_64-linux = nixpkgs.legacyPackages.x86_64-linux;
-      aarch64-linux = nixpkgs.legacyPackages.aarch64-linux;
+    pkgs = with nixpkgs.legacyPackages; {
+      inherit x86_64-linux;
+      inherit aarch64-linux;
     };
 
     defaultModules = x:
