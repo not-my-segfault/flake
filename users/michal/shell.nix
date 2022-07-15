@@ -122,6 +122,7 @@ in {
     zoxide
     thefuck
     ultralist
+    zellij
 
     editor.package
   ];
