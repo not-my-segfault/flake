@@ -107,10 +107,6 @@ in {
       enable = true;
       enableAliases = true;
     };
-    tmux = {
-      enable = true;
-      shell = "fish";
-    };
   };
 
   home.packages = with pkgs; [
