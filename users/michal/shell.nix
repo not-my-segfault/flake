@@ -95,10 +95,6 @@ in {
         }
       ];
     };
-    zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-    };
     fzf = {
       enable = true;
       enableFishIntegration = true;
@@ -107,20 +103,26 @@ in {
       enable = true;
       enableAliases = true;
     };
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
   };
 
   home.packages = with pkgs; [
     bat
+    bottom
     duf
     fd
-    python
+    glow
+    inetutils
     lsd
     pfetch
-    zoxide
+    python
     thefuck
     ultralist
     zellij
-    bottom
+    zoxide
 
     editor.package
   ];
