@@ -123,6 +123,7 @@ in {
     thefuck
     ultralist
     zellij
+    bottom
 
     editor.package
   ];
