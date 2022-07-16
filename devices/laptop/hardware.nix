@@ -23,18 +23,6 @@
     extraModulePackages = [];
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/ROOT";
-    fsType = "btrfs";
-  };
-
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-label/EFI";
-    fsType = "vfat";
-  };
-
-  swapDevices = [{device = "/dev/disk/by-label/SWAP";}];
-
   hardware.cpu.intel.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

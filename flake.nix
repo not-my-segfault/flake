@@ -70,7 +70,8 @@
     defaultModules = x:
       nixpkgs.lib.forEach ["base.nix" "hardware.nix"] (
         mod: (./. + "/devices" + ("/" + x) + ("/" + mod))
-      );
+      )
+      ++ [./devices/common.nix];
   in {
     homeConfigurations = {
       "michal" = home-manager.lib.homeManagerConfiguration {

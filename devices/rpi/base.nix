@@ -1,24 +1,8 @@
 {pkgs, ...}: {
-  boot = {
-    loader = {
-      generic-extlinux-compatible.enable = false;
-      systemd-boot = {
-        enable = true;
-        graceful = true;
-      };
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
-      timeout = 5;
-    };
-    # kernelParams = [ "cma=128M" ];
-  };
+  boot.loader.generic-extlinux-compatible.enable = false;
 
   networking = {
     hostName = "new-ewok";
-    networkmanager.enable = true;
-    useDHCP = false;
     interfaces = {
       eth0.useDHCP = true;
       wlan0.useDHCP = true;
@@ -33,8 +17,6 @@
   services = {
     openssh.enable = true;
   };
-
-  time.timeZone = "Europe/London";
 
   environment.systemPackages = with pkgs; [libraspberrypi];
 

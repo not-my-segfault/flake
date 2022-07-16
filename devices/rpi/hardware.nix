@@ -14,18 +14,6 @@
     extraModulePackages = [];
   };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-label/ROOT";
-    fsType = "btrfs";
-  };
-
-  fileSystems."/boot/efi" = {
-    device = "/dev/disk/by-label/EFI";
-    fsType = "vfat";
-  };
-
-  swapDevices = [{device = "/dev/disk/by-label/SWAP";}];
-
   networking = {
     useDHCP = lib.mkDefault false;
     interfaces = {
