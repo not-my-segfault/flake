@@ -7,4 +7,6 @@
     packages = with pkgs; [neofetch htop ncdu];
     stateVersion = "22.11";
   };
+  
+  programs.home-manager.enable = true;
 }
