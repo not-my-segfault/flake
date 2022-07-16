@@ -26,7 +26,7 @@ in {
         vi = "${editor.alias}";
         vim = "${editor.alias}";
         nvim = "${editor.alias}";
-        htop = "bottom";
+        htop = "btm";
         ul = "ultralist";
         f = "fuck";
       };
