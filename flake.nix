@@ -81,7 +81,7 @@
 
       "michal@nixos-rpi" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs.aarch64-linux;
-        modules = modules.home.common;
+        modules = modules.home.common ++ modules.home.dev;
       };
     };
 
