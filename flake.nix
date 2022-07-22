@@ -53,9 +53,7 @@
         };
         gaming = [./common/desktop/gaming.nix];
         server = [
-          ./devops/github-runner.nix
           ./devops/mediawiki.nix
-          ./devops/soft-serve.nix
         ];
       };
     };
