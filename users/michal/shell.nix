@@ -37,7 +37,7 @@ in {
 
         set -x HOSTNAME (hostname)
           
-        set SHELL ${pkgs.fish.bin}
+        set SHELL ${pkgs.fish.out}/bin/fish
 
         set SSH_AUTH_SOCK (gpgconf --list-dirs | grep ssh | cut -d: -f2)
       '';
