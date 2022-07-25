@@ -36,6 +36,8 @@ in {
         set EDITOR "${editor.alias}"
 
         set -x HOSTNAME (hostname)
+          
+        set SHELL ${pkgs.fish.bin}
 
         set SSH_AUTH_SOCK (gpgconf --list-dirs | grep ssh | cut -d: -f2)
       '';
@@ -110,6 +112,7 @@ in {
   };
 
   home.packages = with pkgs; [
+    asciinema
     bat
     bottom
     duf
