@@ -95,10 +95,11 @@
       '';
     };
     packages = with pkgs; [
-      onefetch
-      w3m
       gitui
+      onefetch
+      qmk
       sshs
+      w3m
     ];
   };
 }
