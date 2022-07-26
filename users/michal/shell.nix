@@ -37,6 +37,9 @@ in {
 
         set -x HOSTNAME (hostname)
           
+        set -x QMK_HOME /hdd/Git/personal/qmk_firmware
+        set -x QMK_FIRMWARE /hdd/Git/personal/qmk_firmware
+          
         set SHELL ${pkgs.fish.out}/bin/fish
 
         set SSH_AUTH_SOCK (gpgconf --list-dirs | grep ssh | cut -d: -f2)
