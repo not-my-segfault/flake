@@ -2,7 +2,7 @@
   boot.loader.generic-extlinux-compatible.enable = false;
 
   networking = {
-    hostName = "new-ewok";
+    hostName = "nixos-rpi";
     interfaces = {
       eth0.useDHCP = true;
       wlan0.useDHCP = true;

@@ -106,15 +106,15 @@
         system = "aarch64-linux";
         modules =
           defaultModules "rpi"
-          ++ [nixos-hardware.nixosModules.raspberry-pi-4]
           ++ modules.nixos.common
-          ++ modules.nixos.server;
+          ++ modules.nixos.desktops.sway
+          ++ [nixos-hardware.nixosModules.raspberry-pi-4];
       };
     };
 
     devShells = {
       x86_64-linux.default = pkgs.x86_64-linux.mkShell {buildInputs = with pkgs.x86_64-linux; [statix];};
-      aarch64-linux.default = pkgs.aarch64-linux.mkShell {buildInputs = with pkgs.x86_64-linux; [statix];};
+      aarch64-linux.default = pkgs.aarch64-linux.mkShell {buildInputs = with pkgs.aarch64-linux; [statix];};
     };
 
     formatter = {
