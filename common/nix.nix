@@ -1,5 +1,8 @@
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnsupportedSystem = true;
+  };
   nix = {
     settings = {auto-optimise-store = true;};
     gc = {
