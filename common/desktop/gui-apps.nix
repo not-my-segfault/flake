@@ -1,10 +1,10 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
-    discord
+  # discord
     firefox
     libreoffice
-    skypeforlinux
-    spotify
+  # skypeforlinux
+  # spotify
     thunderbird
   ];
   services.flatpak.enable = true;
