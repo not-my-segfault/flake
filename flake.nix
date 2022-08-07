@@ -8,16 +8,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    utils.url = "github:gytis-ivaskevicius/flake-utils-plus";
-    nixos-wsl.url = "github:nix-community/nixos-wsl";
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
   };
 
   outputs = {
     nixpkgs,
     nixos-hardware,
     home-manager,
-    nixos-wsl,
-    utils,
     ...
   } @ inputs: let
     modules = {
@@ -57,8 +56,6 @@
         ];
       };
     };
-
-    supportedSystems = ["x86_64-linux" "aarch64-linux"];
 
     pkgs = with nixpkgs.legacyPackages; {
       inherit x86_64-linux;
@@ -108,6 +105,7 @@
           defaultModules "rpi"
           ++ modules.nixos.common
           ++ modules.nixos.desktops.sway
+          ++ modules.nixos.dev
           ++ [nixos-hardware.nixosModules.raspberry-pi-4];
       };
     };

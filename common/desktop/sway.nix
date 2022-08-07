@@ -14,11 +14,13 @@
         wofi
       ];
     };
-    qt5ct.enable = true;
     xwayland.enable = true;
   };
 
-  qt5.style = "adwaita-dark";
+  qt5 = {
+    style = "adwaita-dark";
+    platformTheme = "qt5ct";
+  };
 
   environment = {
     systemPackages = with pkgs; [

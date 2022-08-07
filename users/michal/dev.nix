@@ -88,7 +88,7 @@
         Host michal@new-ewok
           HostName 10.0.0.15
           User root
-        
+
         ControlMaster auto
         ControlPath /tmp/%r@%h:%p
         ControlPersist yes

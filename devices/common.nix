@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   boot = {
     loader = {
       systemd-boot = {
@@ -24,7 +24,7 @@
   time.timeZone = "Europe/London";
 
   fileSystems = {
-    "/" = {
+    "/" = lib.mkDefault {
       device = "/dev/disk/by-label/ROOT";
       fsType = "btrfs";
     };
