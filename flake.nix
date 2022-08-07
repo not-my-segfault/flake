@@ -23,6 +23,7 @@
       home = {
         common = [./users/michal/shell.nix ./users/michal/base.nix];
         dev = [./users/michal/dev.nix];
+        impermanence = [./users/michal/impermanence.nix];
       };
       nixos = {
         common = [
@@ -54,6 +55,9 @@
         server = [
           ./devops/mediawiki.nix
         ];
+        impermanence = [
+          ./common/impermanence.nix
+        ];
       };
     };
 
@@ -76,7 +80,10 @@
 
       "michal@nixos-rpi" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs.aarch64-linux;
-        modules = modules.home.common ++ modules.home.dev;
+        modules =
+          modules.home.common
+          ++ modules.home.dev
+          ++ modules.home.impermanence;
       };
     };
 
