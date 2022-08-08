@@ -36,10 +36,13 @@
           ./common/dev/qmk.nix
         ];
         desktops = {
-          common = [
-            ./common/desktop/media.nix
-            ./common/desktop/gui-apps.nix
-          ];
+          common = {
+            any = [
+              ./common/desktop/media.nix
+              ./common/desktop/gui-apps.nix
+            ];
+            x86_64 = modules.nixos.desktops.common.any ++ [./common/desktop/gui-apps-x86_64.nix];
+          };
           kde =
             [
               ./common/desktop/kde.nix
@@ -93,7 +96,7 @@
         modules =
           defaultModules "station"
           ++ modules.nixos.desktops.kde
-          ++ modules.nixos.common
+          ++ modules.nixos.common.x86_64
           ++ modules.nixos.gaming
           ++ modules.nixos.dev;
       };
@@ -103,14 +106,14 @@
         modules =
           defaultModules "laptop"
           ++ modules.nixos.desktops.kde
-          ++ modules.nixos.common;
+          ++ modules.nixos.common.x86_64;
       };
 
       "nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules =
           defaultModules "rpi"
-          ++ modules.nixos.common
+          ++ modules.nixos.common.any
           ++ modules.nixos.desktops.sway
           ++ modules.nixos.dev
           ++ [nixos-hardware.nixosModules.raspberry-pi-4];
