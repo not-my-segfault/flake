@@ -116,6 +116,7 @@
           ++ modules.nixos.common.any
           ++ modules.nixos.desktops.sway
           ++ modules.nixos.dev
+          ++ modules.nixos.impermanence
           ++ [nixos-hardware.nixosModules.raspberry-pi-4];
       };
     };
