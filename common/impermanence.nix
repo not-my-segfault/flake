@@ -6,8 +6,14 @@
       options = ["defaults" "size=2G" "mode=755"];
     };
     "/nix" = {
-      device = "/dev/disk/by-label/NIX";
-      options = ["compress=zstd"];
+      device = "/dev/disk/by-label/PERSIST";
+      fsType = "btrfs";
+      options = ["subvol=@nix" "compress=zstd"];
+    };
+    "/boot" = {
+      device = "/dev/disk/by-label/PERSIST";
+      fsType = "btrfs";
+      options = ["subvol=@boot"];
     };
   };
 
