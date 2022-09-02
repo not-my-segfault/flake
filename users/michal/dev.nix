@@ -69,25 +69,21 @@
         ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDAwgkEpWmDGQiOK+N5MxXdBYDIIr6DNn52UAKqY0dnxyYw1aATyChe1etqeWN/e6DH6g9yc3BvG6lV21pCVmqc3CyrxfsgQnCBU8ziUi8xk9dmdbSyZoEnETY2DGX3oWmYOlNQsbSa8IBa4iwbW5lLpdvowaka9TEmTGsNafkx8fPMhK4cdD0RsAsCg1pFCskHOxBZzrgV5HL2aMLy2Ys+4DqWOPXIY3pXsVjzdi3YVW59oXaNNd+NC8pqM3HiR2X4WS+/F5s1yIJE8G7TeC7mSqa68K6pfPAjzyHe/4ZzcyYkuOEe4KSxsPwNGGCXoYEaCMb2v7jgxWWZxedvBC1psSiFj01AAZBWl2fwSIOa88LwGtdtA/LOz5aOdHmxtZ8NwwGtx+mWz31eWUEMUEc72XMn7XdP++yvdlVsZg+bat2NryjO8+iCpz8opfqZ9r5f4EDkXFPcFMMwjUAFUUk0hv008vwhuudEwcuqgFzyt23aWOQFxTVAtD4OHYvKYCF1JkVYuZnpzDY2I2zUZ+749kYyUm+aWae+fE54FvyX0yO3M08GNizUn0X578HhICgZJlo09ewy9dIKQtsoVZPFGyr+jDqJJkJFbCkLwwxUIiijz16olrFD3UpscF+oiEVzkJ+9ClXvcbArqu1KtZ+2TrjFhk1o23ukmxZrjSEKkQ== cardno:16 179 196
       '';
       ".ssh/config".text = ''
-        Host michal@falcon
+        Host michal@repo.getcryst.al
           HostName repo.getcryst.al
           User michal
 
-        Host builder@falcon
+        Host builder@repo.getcryst.al
           HostName repo.getcryst.al
           User builder
 
-        Host admin@tar
-          HostName 10.0.0.16
+        Host admin@tar.black
+          HostName tar.black
           User admin
 
-        Host michal@new-ewok
-          HostName 10.0.0.15
+        Host michal@wiki.getcryst.al
+          HostName wiki.getcryst.al
           User michal
-
-        Host michal@new-ewok
-          HostName 10.0.0.15
-          User root
 
         ControlMaster auto
         ControlPath /tmp/%r@%h:%p
