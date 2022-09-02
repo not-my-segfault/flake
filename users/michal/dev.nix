@@ -5,7 +5,7 @@
       userName = "Michal";
       userEmail = "michal@tar.black";
       signing = {
-        key = "A6A1A4DCB22279B9";
+        key = "C9CBDADE150C1E8B";
         signByDefault = true;
       };
       extraConfig = {
@@ -23,7 +23,7 @@
       };
       settings = {
         trust-model = "tofu+pgp";
-        default-key = "A6A1A4DCB22279B9";
+        default-key = "C9CBDADE150C1E8B";
       };
     };
 
@@ -56,8 +56,8 @@
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      enableScDaemon = true;
-      sshKeys = ["6D3C4AD0688B00F9283C6AF6A0AD05622E61D340"];
+      enableScDaemon = false;
+      sshKeys = ["2E7B7CF23ACC452292F1C0745221D5D912086906"];
       pinentryFlavor = "gnome3";
     };
   };
