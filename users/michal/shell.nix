@@ -5,112 +5,58 @@
   };
 in {
   programs = {
-    fish = {
+    nushell = {
       enable = true;
-      functions = {
-        fish_greeting = "";
-        pfetch = ''
-          set PF_INFO "ascii title os host kernel uptime memory palette"
-          if test -f /usr/bin/pfetch
-            /usr/bin/pfetch
-          else
-            env pfetch
-          end
-        '';
-      };
-      shellAliases = {
-        cat = "bat";
-        cd = "z";
-        clear = "env clear && pfetch && ultralist list";
-        find = "fd";
-        vi = "${editor.alias}";
-        vim = "${editor.alias}";
-        nvim = "${editor.alias}";
-        htop = "btm";
-        ul = "ultralist";
-        f = "fuck";
-      };
-      shellAbbrs = {nix-shell = "nix-shell --run fish";};
-      shellInit = ''
-        set DIRENV_LOG_FORMAT ""
-        set EDITOR "${editor.alias}"
-
-        set -x HOSTNAME (hostname)
-
-        set -x QMK_HOME /hdd/Git/personal/qmk_firmware
-        set -x QMK_FIRMWARE /hdd/Git/personal/qmk_firmware
-
-        set SHELL ${pkgs.fish.out}/bin/fish
-
-        set SSH_AUTH_SOCK (gpgconf --list-dirs | grep ssh | cut -d: -f2)
+      configFile.text = ''
+        let-env config = {
+          edit_mode: vi
+          rm_always_trash: true
+          completion_algorithm: fuzzy
+          show_banner: false
+          
+          hooks : {
+            pre_prompt: [{
+              code: "
+                let direnv = (direnv export json | from json)
+                let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+                $direnv | load-env
+              "
+            }]
+          }
+        }
+        alias cat = bat
+        alias vim = ${editor.alias}
+        alias htop = btm
+        alias ul = ultralist
+        
+        source ~/.cache/nu/zoxide.nu
+        source ~/.cache/nu/starship.nu
       '';
-      interactiveShellInit = ''
-        thefuck --alias | source
-        clear
+      envFile.text = ''
+        let-env DIRENV_LOG_FORMAT = ""
+        let-env EDITOR = "${editor.alias}"
+        let-env QMK_HOME = "/hdd/Git/personal/qmk_firmware"
+        let-env QMK_FIRMWARE = "/hdd/Git/personal/qmk_firmware"
+        let-env SHELL = "${pkgs.nushell.out}/bin/nu"
+        let-env SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket | str trim)
+
+        mkdir ~/.cache/nu
+        zoxide init nushell --hook prompt | save ~/.cache/nu/zoxide.nu
+        starship init nu | save ~/.cache/nu/starship.nu
       '';
-      plugins = [
-        {
-          name = "tide";
-          src = pkgs.fetchFromGitHub {
-            owner = "IlanCosman";
-            repo = "tide";
-            rev = "d715de0a2ab4e33f202d30f5c6bd8da9cfc6c310";
-            sha256 = "6ys1SEfcWO0cRRNawrpnUU9tPJVVZ0E6RcPmrE9qG5g=";
-          };
-        }
-
-        {
-          name = "bass";
-          src = pkgs.fetchFromGitHub {
-            owner = "edc";
-            repo = "bass";
-            rev = "2fd3d2157d5271ca3575b13daec975ca4c10577a";
-            sha256 = "fl4/Pgtkojk5AE52wpGDnuLajQxHoVqyphE90IIPYFU=";
-          };
-        }
-
-        {
-          name = "sponge";
-          src = pkgs.fetchFromGitHub {
-            owner = "andreiborisov";
-            repo = "sponge";
-            rev = "dcfcc9089939f48b25b861a9254a39de8e9f33a0";
-            sha256 = "+GGfFC/hH7A8n9Wwojt5PW96fSzvRhThnZ3pLeWEqds=";
-          };
-        }
-
-        {
-          name = "fish-plugin-sudo";
-          src = pkgs.fetchFromGitHub {
-            owner = "eth-p";
-            repo = "fish-plugin-sudo";
-            rev = "e153fdea568cd370312f9c0809fac15fc7582bfd";
-            sha256 = "bTK34G+J6AOoYmhOIG0XNXV2SN/u789+epXMBN3lnu4=";
-          };
-        }
-
-        {
-          name = "puffer-fish";
-          src = pkgs.fetchFromGitHub {
-            owner = "nickeb96";
-            repo = "puffer-fish";
-            rev = "df333fff5130ef8bf153c9bafbf0661534f81d9c";
-            sha256 = "VtFrRzI476Hkutwwgkkc9hoiCma6Xyknm7xHeghrLxo=";
-          };
-        }
-      ];
+    };
+    starship = {
+      enable = true;
+      settings = {
+        command_timeout = 5000;
+        add_newline = false;
+      };
     };
     fzf = {
       enable = true;
-      enableFishIntegration = true;
-    };
-    lsd = {
-      enable = true;
-      enableAliases = true;
     };
     zoxide = {
       enable = true;
-      enableFishIntegration = true;
     };
   };
 
@@ -120,12 +66,7 @@ in {
     bottom
     duf
     fd
-    glow
-    inetutils
     lsd
-    pfetch
-    python
-    thefuck
     ultralist
     zellij
     zoxide
