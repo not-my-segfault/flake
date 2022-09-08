@@ -50,6 +50,8 @@ in {
       settings = {
         command_timeout = 5000;
         add_newline = false;
+        character.disabled = true;
+        format = "$all\n";
       };
     };
     fzf = {
