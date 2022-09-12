@@ -72,7 +72,10 @@ in {
         command_timeout = 5000;
         add_newline = false;
         character.disabled = true;
-        time.disabled = false;
+        time = {
+          disabled = false;
+          format = "[$time]($style)";
+        };
         fill.symbol = " ";
         git_status = {
           ahead = "⇡\${count}";
