@@ -39,6 +39,7 @@ in {
         let-env QMK_FIRMWARE = "/hdd/Git/personal/qmk_firmware"
         let-env SHELL = "${pkgs.nushell.out}/bin/nu"
         let-env SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket | str trim)
+        let-env PATH = ("~/.cargo/bin:" + $env.PATH)
 
         mkdir ~/.cache/nu
         zoxide init nushell --hook prompt | save ~/.cache/nu/zoxide.nu
