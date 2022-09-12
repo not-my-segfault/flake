@@ -28,6 +28,7 @@ in {
         alias vim = ${editor.alias}
         alias htop = btm
         alias ul = ultralist
+        alias nix-shell = nix-shell --run nu
         
         def sudo [
         ...args: string # The arguments to pass to `sudo` (optional)
