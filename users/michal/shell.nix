@@ -29,6 +29,23 @@ in {
         alias htop = btm
         alias ul = ultralist
         
+        def sudo [
+        ...args: string # The arguments to pass to `sudo` (optional)
+        ] {
+          let length = ($args | length)
+          let temp   = (mktemp | str trim)
+
+          if $length > 0 {
+            let cmd  = ($args | str collect " ")
+            let body = ("#!/usr/bin/env nu\n{} | to yaml; rm " | str replace '{}' $cmd)
+            let full = ($body + $temp | save $temp)
+            
+            ^sudo -E -- nu $temp | from yaml            
+          } else {
+            ^sudo -Es nu
+          }
+        }
+        
         source ~/.cache/nu/zoxide.nu
         source ~/.cache/nu/starship.nu
       '';
@@ -52,7 +69,13 @@ in {
         command_timeout = 5000;
         add_newline = false;
         character.disabled = true;
+        git_status = {
+          ahead = "⇡\${count}";
+          diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
+          behind = "⇣\${count}";
+        };
         format = "$all\n";
+      # format = '' '';
       };
     };
     fzf = {
