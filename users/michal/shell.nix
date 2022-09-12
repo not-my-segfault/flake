@@ -48,6 +48,8 @@ in {
         
         source ~/.cache/nu/zoxide.nu
         source ~/.cache/nu/starship.nu
+        
+        alias cd = z
       '';
       envFile.text = ''
         let-env DIRENV_LOG_FORMAT = ""
