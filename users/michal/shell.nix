@@ -93,17 +93,20 @@ in {
     };
   };
 
-  home.packages = with pkgs; [
-    asciinema
-    bat
-    bottom
-    duf
-    fd
-    lsd
-    ultralist
-    zellij
-    zoxide
+  home = {
+    file.".wezterm.lua".source = ./configs/.wezterm.lua;
+    packages = with pkgs; [
+      asciinema
+      bat
+      bottom
+      duf
+      fd
+      lsd
+      ultralist
+      zellij
+      zoxide
 
-    editor.package
-  ];
+      editor.package
+    ];
+  };
 }
