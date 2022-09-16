@@ -29,24 +29,7 @@ in {
         alias htop = btm
         alias ul = ultralist
         alias nix-shell = nix-shell --run nu
-        
-        def sudo [
-        ...args: string # The arguments to pass to `sudo` (optional)
-        ] {
-          let length = ($args | length)
-          let temp   = (mktemp | str trim)
-
-          if $length > 0 {
-            let cmd  = ($args | str collect " ")
-            let body = ("#!/usr/bin/env nu\n{} | to yaml; rm " | str replace '{}' $cmd)
-            let full = ($body + $temp | save $temp)
-            
-            ^sudo -E -- nu $temp | from yaml            
-          } else {
-            ^sudo -Es nu
-          }
-        }
-        
+                
         source ~/.cache/nu/zoxide.nu
         source ~/.cache/nu/starship.nu
         
