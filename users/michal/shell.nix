@@ -40,7 +40,7 @@ in {
         let-env EDITOR = "${editor.alias}"
         let-env QMK_HOME = "/hdd/Git/personal/qmk_firmware"
         let-env QMK_FIRMWARE = "/hdd/Git/personal/qmk_firmware"
-        let-env SHELL = "${pkgs.nushell.out}/bin/nu"
+        let-env SHELL = "/home/michal/.nix-profile/bin/nu"
         let-env SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket | str trim)
         let-env PATH = ("/home/michal/.cargo/bin:" + $env.PATH)
 
