@@ -35,8 +35,6 @@ in {
         source ~/.cache/nu/starship.nu
         
         alias cd = z
-        
-        clear
       '';
       envFile.text = ''
         let-env DIRENV_LOG_FORMAT = ""
@@ -50,6 +48,8 @@ in {
         mkdir ~/.cache/nu
         zoxide init nushell --hook prompt | save ~/.cache/nu/zoxide.nu
         starship init nu | save ~/.cache/nu/starship.nu
+        
+        clear
       '';
     };
     starship = {
@@ -80,7 +80,10 @@ in {
   };
 
   home = {
-    # file.".wezterm.lua".source = ./configs/.wezterm.lua; # No wezterm for now...
+    file.".config/nushell/login.nu".text = ''
+      clear
+      pfetch
+    '';
     packages = with pkgs; [
       asciinema
       bat
