@@ -24,6 +24,7 @@ in {
             }]
           }
         }
+        
         alias cat = bat
         alias vim = ${editor.alias}
         alias htop = btm
@@ -34,6 +35,8 @@ in {
         source ~/.cache/nu/starship.nu
         
         alias cd = z
+        
+        clear
       '';
       envFile.text = ''
         let-env DIRENV_LOG_FORMAT = ""
@@ -77,7 +80,7 @@ in {
   };
 
   home = {
-    file.".wezterm.lua".source = ./configs/.wezterm.lua;
+    # file.".wezterm.lua".source = ./configs/.wezterm.lua; # No wezterm for now...
     packages = with pkgs; [
       asciinema
       bat
