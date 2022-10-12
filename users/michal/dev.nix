@@ -46,21 +46,21 @@
   home = {
     file = {
       ".ssh/config".text = ''
-        Host michal@repo.getcryst.al
-          HostName repo.getcryst.al
+        Host michal@falcon.repo.getcryst.al
+          HostName falcon.repo.getcryst.al
           User michal
 
-        Host builder@repo.getcryst.al
-          HostName repo.getcryst.al
+        Host builder@falcon.repo.getcryst.al
+          HostName falcon.repo.getcryst.al
           User builder
 
         Host admin@tar.black
           HostName tar.black
           User admin
 
-        Host michal@wiki.getcryst.al
-          HostName wiki.getcryst.al
-          User michal
+        Host admin@getcryst.al
+          HostName admin@getcryst.al
+          User admin
 
         ControlMaster auto
         ControlPath /tmp/%r@%h:%p
@@ -70,6 +70,7 @@
     packages = with pkgs; [
       qmk
       sshs
+      lapce
     ];
   };
 }
