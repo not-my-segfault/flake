@@ -58,17 +58,12 @@ in {
         command_timeout = 5000;
         add_newline = false;
         character.disabled = true;
-        time = {
-          disabled = false;
-          format = "[$time]($style)";
-        };
-        fill.symbol = " ";
         git_status = {
           ahead = "⇡\${count}";
           diverged = "⇕⇡\${ahead_count}⇣\${behind_count}";
           behind = "⇣\${count}";
         };
-        format = "$all$fill$time$line_break";
+        format = "$all\n";
       };
     };
     fzf = {
