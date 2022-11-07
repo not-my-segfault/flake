@@ -8,9 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence = {
-      url = "github:nix-community/impermanence";
-    };
   };
 
   outputs = {
@@ -23,26 +20,24 @@
       home = {
         common = [./users/michal/shell.nix ./users/michal/base.nix];
         dev = [./users/michal/dev.nix];
-        impermanence = [./users/michal/impermanence.nix];
       };
       nixos = {
         common = [
           ./common/nix.nix
           ./common/personal.nix
           ./common/yubikey.nix
+          ./common/security.nix
         ];
         dev = [
           ./common/dev/distrobox.nix
+          ./common/dev/podman.nix
           ./common/dev/qmk.nix
         ];
         desktops = {
-          common = {
-            any = [
-              ./common/desktop/media.nix
-              ./common/desktop/gui-apps.nix
-            ];
-            x86_64 = modules.nixos.desktops.common.any ++ [./common/desktop/gui-apps-x86_64.nix];
-          };
+          common = [
+            ./common/desktop/media.nix
+            ./common/desktop/gui-apps.nix
+          ];
           kde =
             [
               ./common/desktop/kde.nix
@@ -53,14 +48,13 @@
               ./common/desktop/sway.nix
             ]
             ++ modules.nixos.desktops.common;
+          gnome =
+            [
+              ./common/desktop/gnome.nix
+            ]
+            ++ modules.nixos.desktops.common;
         };
-        gaming = [./common/desktop/gaming.nix];
-        server = [
-          ./devops/mediawiki.nix
-        ];
-        impermanence = [
-          ./common/impermanence.nix
-        ];
+        server = [];
       };
     };
 
@@ -73,7 +67,13 @@
       nixpkgs.lib.forEach ["base.nix" "hardware.nix"] (
         mod: (./. + "/devices" + ("/" + x) + ("/" + mod))
       )
-      ++ [./devices/common.nix];
+      ++ [./devices/common.nix]
+      ++ [
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.sharedModules = modules.home.common ++ modules.home.dev;
+        }
+      ];
   in {
     homeConfigurations = {
       "michal" = home-manager.lib.homeManagerConfiguration {
@@ -83,10 +83,7 @@
 
       "michal@nixos-rpi" = home-manager.lib.homeManagerConfiguration {
         pkgs = pkgs.aarch64-linux;
-        modules =
-          modules.home.common
-          ++ modules.home.dev
-          ++ modules.home.impermanence;
+        modules = modules.home.common ++ modules.home.dev;
       };
     };
 
@@ -95,9 +92,8 @@
         system = "x86_64-linux";
         modules =
           defaultModules "station"
-          ++ modules.nixos.desktops.kde
-          ++ modules.nixos.common.x86_64
-          ++ modules.nixos.gaming
+          ++ modules.nixos.desktops.gnome
+          ++ modules.nixos.common
           ++ modules.nixos.dev;
       };
 
@@ -106,17 +102,16 @@
         modules =
           defaultModules "laptop"
           ++ modules.nixos.desktops.kde
-          ++ modules.nixos.common.x86_64;
+          ++ modules.nixos.common;
       };
 
       "nixos-rpi" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules =
           defaultModules "rpi"
-          ++ modules.nixos.common.any
+          ++ modules.nixos.common
           ++ modules.nixos.desktops.sway
           ++ modules.nixos.dev
-          ++ modules.nixos.impermanence
           ++ [nixos-hardware.nixosModules.raspberry-pi-4];
       };
     };

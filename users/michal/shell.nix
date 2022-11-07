@@ -13,7 +13,7 @@ in {
           rm_always_trash: true
           completion_algorithm: fuzzy
           show_banner: false
-          
+
           hooks : {
             pre_prompt: [{
               code: "
@@ -24,16 +24,15 @@ in {
             }]
           }
         }
-        
+
         alias cat = bat
         alias vim = ${editor.alias}
         alias htop = btm
-        alias ul = ultralist
         alias nix-shell = nix-shell --run nu
-                
+
         source ~/.cache/nu/zoxide.nu
         source ~/.cache/nu/starship.nu
-        
+
         alias cd = z
       '';
       envFile.text = ''
@@ -48,7 +47,7 @@ in {
         mkdir ~/.cache/nu
         zoxide init nushell --hook prompt | save ~/.cache/nu/zoxide.nu
         starship init nu | save ~/.cache/nu/starship.nu
-        
+
         clear
       '';
     };
@@ -85,10 +84,10 @@ in {
       bottom
       duf
       fd
-      lsd
-      ultralist
       zellij
       zoxide
+      neofetch
+      ncdu
 
       editor.package
     ];

@@ -3,11 +3,13 @@
     allowUnfree = true;
     allowUnsupportedSystem = true;
   };
+
   nix = {
     settings = {auto-optimise-store = true;};
     gc = {
       automatic = true;
-      dates = "daily";
+      dates = "19:00";
+      persistent = true;
       options = "--delete-older-than 7d";
     };
     extraOptions = ''
@@ -16,7 +18,7 @@
   };
 
   system.autoUpgrade = {
-    enable = true;
+    enable = false;
     flake = "https://git.tar.black/michal/nixos-flake?rev=main";
     dates = "daily";
   };

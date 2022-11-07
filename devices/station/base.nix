@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  boot.kernelPackages = pkgs.linuxPackages_xanmod;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking = {
     hostName = "nixos-station";
@@ -13,5 +13,5 @@
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia.modesetting.enable = true;
 
-  system.stateVersion = "21.11";
+  system.stateVersion = "22.11";
 }

@@ -1,9 +1,9 @@
 {lib, ...}: {
   boot = {
+    cleanTmpDir = true;
     loader = {
       systemd-boot = {
         enable = true;
-        graceful = true;
       };
       efi = {
         canTouchEfiVariables = true;
@@ -33,6 +33,8 @@
       fsType = "vfat";
     };
   };
+
+  zramSwap.enable = true;
 
   swapDevices = [{device = "/dev/disk/by-label/SWAP";}];
 }

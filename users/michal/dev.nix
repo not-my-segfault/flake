@@ -68,9 +68,7 @@
       '';
     };
     packages = with pkgs; [
-      qmk
       sshs
-      lapce
     ];
   };
 }

@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   sound.enable = false;
+  hardware.pulseaudio.enable = false;
+
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa = {
@@ -9,8 +12,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
-
-  programs.kdeconnect.enable = true;
 
   services = {
     printing = {
@@ -26,7 +27,7 @@
   hardware.bluetooth.enable = true;
 
   fonts.fonts = with pkgs; [
-    (nerdfonts.override {fonts = ["Hack"];})
+    (nerdfonts.override {fonts = ["Hasklig"];})
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji

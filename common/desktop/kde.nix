@@ -3,8 +3,10 @@
     enable = true;
     layout = "us";
     desktopManager.plasma5.enable = true;
-    displayManager = {sddm.enable = true;};
+    displayManager.sddm.enable = true;
   };
+
+  programs.kdeconnect.enable = true;
 
   environment.systemPackages = with pkgs; [
     ark
