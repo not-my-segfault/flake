@@ -46,25 +46,26 @@
   home = {
     file = {
       ".ssh/config".text = ''
-        Host michal@falcon.repo.getcryst.al
+        Host Falcon Admin
           HostName falcon.repo.getcryst.al
           User michal
 
-        Host builder@falcon.repo.getcryst.al
+        Host Falcon Builder
           HostName falcon.repo.getcryst.al
           User builder
 
-        Host admin@tar.black
+        Host Tar Admin
           HostName tar.black
           User admin
 
-        Host admin@getcryst.al
+        Host Bellator Admin
           HostName admin@getcryst.al
           User admin
 
-        ControlMaster auto
-        ControlPath /tmp/%r@%h:%p
-        ControlPersist yes
+        Host Antiz Admin
+          HostName antiz.rc-linux.com
+          User michal
+          Port 2224
       '';
     };
     packages = with pkgs; [
