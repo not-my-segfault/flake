@@ -46,23 +46,23 @@
   home = {
     file = {
       ".ssh/config".text = ''
-        Host Falcon Admin
+        Host "Falcon Admin"
           HostName falcon.repo.getcryst.al
           User michal
 
-        Host Falcon Builder
+        Host "Falcon Builder"
           HostName falcon.repo.getcryst.al
           User builder
 
-        Host Tar Admin
+        Host "Tar Admin"
           HostName tar.black
           User admin
 
-        Host Bellator Admin
+        Host "Bellator Admin"
           HostName admin@getcryst.al
           User admin
 
-        Host Antiz Admin
+        Host "Antiz Admin"
           HostName antiz.rc-linux.com
           User michal
           Port 2224
